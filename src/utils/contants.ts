@@ -11,7 +11,7 @@ import inProgressRelaunch from "../assets/in_progress_relaunch.svg";
 import notFoundGalaxy from "../assets/not_found_galaxy.svg";
 import notFoundVoid from "../assets/not_found_void.svg";
 import { Language } from "../config";
-import type { OpenGraphOptions } from "./types";
+import type { OpenGraphOptionsImage } from "./types";
 
 export const PAGE_TITLE_PREFFIX = "Leonardo Alvarenga";
 export const DEFAULT_PAGE_TITLE = `${PAGE_TITLE_PREFFIX} - Frontend Software Engineer`;
@@ -89,17 +89,29 @@ export const FOOTER_LINKS = [
   },
 ];
 
-export const DEFAULT_OPEN_GRAPH: OpenGraphOptions = {
-  author: "Leonardo A. Alvarenga",
-  title: "",
-  image: {
-    default: {
-      alt: "Default og image",
-      src: "/OpenGraphOptionsBase_en-us.png",
-    },
-    square: {
-      alt: "Default og square image",
-      src: "/OpenGraphOptionsBaseSquare.png",
-    },
+export const OPEN_GRAPH_IMGS: Record<string, OpenGraphOptionsImage> = {
+  "pt-br": {
+    alt: "Default og image",
+    src: "/OpenGraphBase_pt-br.png",
+  },
+  "en-us": {
+    alt: "Default og image",
+    src: "/OpenGraphBase_en-us.png",
   },
 };
+
+export const DEFAULT_OPEN_GRAPH_SQR_IMAGE: OpenGraphOptionsImage = {
+  alt: "Default og image",
+  src: "/OpenGraphBaseSquare.png",
+};
+
+export function getDefaultOpenGraph(language: string) {
+  return {
+    author: "Leonardo A. Alvarenga",
+    title: "",
+    image: {
+      default: OPEN_GRAPH_IMGS[language] ?? OPEN_GRAPH_IMGS["en-us"],
+      square: DEFAULT_OPEN_GRAPH_SQR_IMAGE,
+    },
+  };
+}
