@@ -2,7 +2,6 @@
 import { ClientRouter } from "astro:transitions";
 import "../styles/global.css";
 import {
-  DEFAULT_OPEN_GRAPH,
   DEFAULT_PAGE_TITLE,
   PAGE_TITLE_PREFFIX,
   type OpenGraphOptions,
@@ -24,9 +23,14 @@ const title = pageTitle
   ? t(PAGE_TITLE_PREFFIX).trimEnd().concat(" - ", t(pageTitle))
   : DEFAULT_PAGE_TITLE;
 
+const ogTitle = pageTitle
+  ? t(DEFAULT_PAGE_TITLE).trimEnd().concat(" | ", t(pageTitle))
+  : DEFAULT_PAGE_TITLE;
+
+
 const openGraphOptions: OpenGraphOptions = {
-  ...(openGraph ?? DEFAULT_OPEN_GRAPH),
-  title,
+  ...(openGraph ?? {}),
+  title: ogTitle,
 };
 ---
 

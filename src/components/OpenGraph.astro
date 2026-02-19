@@ -1,6 +1,6 @@
 ---
 import { getAltUrl, getLangFromUrl, useTranslation } from "../config";
-import { DEFAULT_OPEN_GRAPH, HOST_NAME, type OpenGraphOptions } from "../utils";
+import { getDefaultOpenGraph, HOST_NAME, type OpenGraphOptions } from "../utils";
 
 interface Props {
   options: OpenGraphOptions;
@@ -10,17 +10,19 @@ const { url } = Astro;
 const [language] = getLangFromUrl(url);
 const { t } = useTranslation({ language });
 
+const defaultOG = getDefaultOpenGraph(language);
+
 const { options } = Astro.props;
 const {
   author = "",
   title = "",
   description = "",
   image = {
-    default: DEFAULT_OPEN_GRAPH.image?.default,
-    square: DEFAULT_OPEN_GRAPH.image?.square,
+    default: defaultOG.image?.default,
+    square: defaultOG.image?.square,
   },
   pathname = "/",
-} = { ...DEFAULT_OPEN_GRAPH, ...options };
+} = { ...defaultOG, ...options };
 
 const ogUrl = HOST_NAME.concat(getAltUrl(url, language, pathname));
 ---
@@ -35,7 +37,7 @@ const ogUrl = HOST_NAME.concat(getAltUrl(url, language, pathname));
 {
   image?.default && (
     <Fragment>
-      <meta property="og:image" content={image?.default?.src} />
+      <meta property="og:image" content={`${HOST_NAME.concat(image?.default?.src)}`} />
       <meta property="og:image:alt" content={image?.default?.alt} />
       <meta property="og:image:width" content="1200" />
       <meta property="og:image:height" content="627" />
