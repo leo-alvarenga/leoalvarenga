@@ -93,8 +93,8 @@ export const TECH_MAP: Record<string, Technology> = {
     label: "Go",
   },
   storybook: {
-    color: "#0078d4",
-    label: "Storybook,js",
+    color: "#ff4785",
+    label: "Storybook.js",
   },
   astro: {
     color: "#ff5e00",

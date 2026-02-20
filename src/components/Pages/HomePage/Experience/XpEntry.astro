@@ -22,14 +22,14 @@ const { location, name, page } = company;
 <div
   class={`
     flex items-center gap-12
-    w-full border-l-2 border-l-red
+    w-full border-l-2 border-l-mauve
     pl-8 py-4 relative
     ${toggleable ? "hidden" : ""}
   `}
   data-xptoggleable={String(toggleable || false)}
 >
   <span
-    class="absolute left-[-15px] border-2 aspect-square flex items-center justify-center rotate-45 border-red p-1 rounded-md text-xs bg-crust"
+    class="absolute left-[-15px] border-2 aspect-square flex items-center justify-center rotate-45 border-mauve p-1 rounded-md text-xs bg-crust"
   >
     <Icon class="w-4 h-4 -rotate-45" name={icon} />
   </span>
