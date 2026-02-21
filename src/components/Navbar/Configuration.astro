@@ -1,0 +1,94 @@
+---
+import { Icon } from "astro-icon/components";
+import Button from "../Button.astro";
+---
+
+<button onclick="toggleConfiguration()">
+  <Button className="p-2" >
+    <Icon name="fa6-solid:language" />
+    <Icon name="fa6-solid:gear" />
+  </Button>
+</button>
+
+<div
+  id="configuration"
+  class={`
+    z-50 absolute flex items-center
+    justify-center w-[40dvw] p-4
+    md:w-[20dvw] right-2 -bottom-8
+    bg-bg3 rounded-lg overflow-hidden
+    max-h-0 transition-all duration-300
+  `}
+>
+ aaaa
+</div>
+
+<script lang="js">
+  function toggleConfiguration() {
+    const config = document.getElementById("configuration");
+    if (!config) return;
+
+    config.classList.toggle("hidden");
+  }
+
+  function toggleLangSelectorList(open = false) {
+    const optionList = document.getElementById("lang-selector-options");
+    if (!optionList) return;
+
+    const closedClass = "max-h-0";
+    const openClass = "max-h-24";
+
+    const { className } = optionList;
+
+    if (open) {
+      optionList.className = className.replace(openClass, closedClass);
+      return;
+    }
+
+    optionList.className = className.replace(closedClass, openClass);
+  }
+
+  function toggleLangSelectorTitle(open = false) {
+    const closeBtn = document.getElementById("lang-selector-close-btn");
+    const title = document.getElementById("lang-selector-title");
+
+    if (!closeBtn || !title) return;
+
+    const closedClass = "h-0 w-0 opacity-0";
+    const openClass = "h-fit w-fit opacity-100";
+
+    const { className: closeBtnClassName } = closeBtn;
+    const { className: titleClassName } = title;
+
+    if (open) {
+      closeBtn.className = closeBtnClassName.replace(openClass, closedClass);
+      title.className = titleClassName.replace(closedClass, openClass);
+      return;
+    }
+
+    closeBtn.className = closeBtnClassName.replace(closedClass, openClass);
+    title.className = titleClassName.replace(openClass, closedClass);
+  }
+
+  function toggleLangSelector() {
+    const isOpen = window.langSelectorIsOpen;
+
+    toggleLangSelectorList(isOpen);
+    toggleLangSelectorTitle(isOpen);
+
+    window.langSelectorIsOpen = !isOpen;
+  }
+
+  function initLangSelector() {
+    window.langSelectorIsOpen = false;
+  }
+
+  function changeLanguage(element) {
+    const { lang } = element.dataset;
+
+    toggleLangSelector();
+    document.dispatchEvent(new CustomEvent("lang_change", { detail: lang }));
+  }
+
+  initLangSelector();
+</script>

@@ -7,6 +7,7 @@ import {
 } from "../../config";
 import { NAVBAR_LINKS } from "../../utils";
 import Brand from "./Brand.astro";
+import Configuration from "./Configuration.astro";
 
 const { url } = Astro;
 
@@ -38,7 +39,7 @@ const getMenuItemClass = (baseHref: string) => {
 ---
 
 <nav
-  class={`w-full p-2 ${commonClasses} gap-4 justify-center overflow-hidden relative`}
+  class={`w-full p-2 ${commonClasses} gap-4 justify-center relative`}
 >
   <div
     class={`
@@ -67,6 +68,10 @@ const getMenuItemClass = (baseHref: string) => {
           </a>
         ))
       }
+    </span>
+
+    <span class="ml-auto hidden">
+      <Configuration />
     </span>
   </div>
 </nav>
