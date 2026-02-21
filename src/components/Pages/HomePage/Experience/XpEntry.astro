@@ -22,14 +22,14 @@ const { location, name, page } = company;
 <div
   class={`
     flex items-center gap-12
-    w-full border-l-2 border-l-mauve
+    w-full border-l-2 border-l-accent1
     pl-8 py-4 relative
     ${toggleable ? "hidden" : ""}
   `}
   data-xptoggleable={String(toggleable || false)}
 >
   <span
-    class="absolute left-[-15px] border-2 aspect-square flex items-center justify-center rotate-45 border-mauve p-1 rounded-md text-xs bg-crust"
+    class="absolute left-[-15px] border-2 aspect-square flex items-center justify-center rotate-45 border-accent1 p-1 rounded-md text-xs bg-bg3"
   >
     <Icon class="w-4 h-4 -rotate-45" name={icon} />
   </span>
@@ -38,7 +38,7 @@ const { location, name, page } = company;
     class={`
         flex flex-col w-full
         gap-6 items-start
-        bg-crust p-4
+        bg-bg3 p-4
         rounded-lg
       `}
   >
@@ -73,7 +73,7 @@ const { location, name, page } = company;
         `}
       >
         <h5 class="inline-default">
-          <Icon class="text-mauve" name="fa6-solid:location-dot" />
+          <Icon class="text-accent1" name="fa6-solid:location-dot" />
 
           <span>
             {
@@ -87,7 +87,7 @@ const { location, name, page } = company;
         {
           page && (
             <a
-              class="inline-default duration-200 transition-all hover:text-mauve"
+              class="inline-default duration-200 transition-all hover:text-accent1"
               href={page}
             >
               <span class="underline">{page.split("//")[1]}</span>

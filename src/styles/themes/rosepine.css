@@ -1,0 +1,18 @@
+.theme-rose-pine {
+  --color-bg1: #191724;
+  --color-bg2: #1f1d2e;
+  --color-bg3: #26233a;
+
+  --color-accent: #ebbcba;
+  --color-accent1: #ebbcba;
+  --color-accent2: #f6c177;
+  --color-accent3: #9ccfd8;
+  --color-accent4: #c4a7e7;
+
+  --color-error: #eb6f92;
+  --color-success: #31748f;
+  --color-warning: #f6c177;
+
+  --color-text: #e0def4;
+  --color-subtext-1: #908caa;
+}

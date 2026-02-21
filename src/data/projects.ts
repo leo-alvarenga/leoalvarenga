@@ -33,8 +33,8 @@ export type Project = {
 };
 
 export const PROJECT_STATUS_COLOR: Record<ProjectStatus, string> = {
-  [ProjectStatus.active]: "green",
-  [ProjectStatus.archived]: "yellow",
+  [ProjectStatus.active]: "success",
+  [ProjectStatus.archived]: "warning",
   [ProjectStatus.inactive]: "red",
 };
 

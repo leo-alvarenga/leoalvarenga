@@ -1,0 +1,18 @@
+.theme-tokyonight {
+  --color-bg1: #1a1b26;
+  --color-bg2: #16161e;
+  --color-bg3: #10111a;
+
+  --color-accent: #bb9af7;
+  --color-accent1: #bb9af7;
+  --color-accent2: #f7768e;
+  --color-accent3: #7aa2f7;
+  --color-accent4: #7dcfff;
+
+  --color-error: #f7768e;
+  --color-success: #9ece6a;
+  --color-warning: #e0af68;
+
+  --color-text: #c0caf5;
+  --color-subtext-1: #a9b1d6;
+}

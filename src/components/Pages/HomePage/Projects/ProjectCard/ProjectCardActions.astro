@@ -23,10 +23,10 @@ const getProjectActionClass = (disabled = false) => {
   const base = "grow-0 px-4 py-2";
 
   if (disabled) {
-  return base.concat(" grow-0 opacity-40 pointer-events-none cursor-not-allowed");
+    return base.concat(" opacity-40 pointer-events-none cursor-not-allowed");
   }
 
-  return base.concat(" grow-0 bg-mantle");
+  return base.concat(" bg-bg2! hover:bg-accent!");
 };
 
 const getSafeHref = (href = "/disabled") => {

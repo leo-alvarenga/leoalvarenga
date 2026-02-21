@@ -23,12 +23,12 @@ const { t } = useTranslation({ language });
         class={`
           inline-flex items-center
           gap-2 px-2 py-1 border
-          border-green rounded-full
+          border-success rounded-full
           text-sm font-bold
         `}
       >
         <Icon
-          class="text-green animate-blink text-xs"
+          class="text-success animate-blink text-xs"
           name="fa6-solid:circle"
         />
 
@@ -42,8 +42,8 @@ const { t } = useTranslation({ language });
       <button
         class={`
             px-4 py-2 rounded-lg
-            border border-green
-            bg-crust flex gap-4
+            border border-success
+            bg-bg3 flex gap-4
             items-center duration-250
             transition-all group grow
             cursor-pointer text-xl
@@ -53,12 +53,12 @@ const { t } = useTranslation({ language });
         title={t("home.contact.email.tip")}
       >
         <span
-          class="text-subtext-0 group-hover:text-green overflow-ellipsis whitespace-nowrap overflow-hidden"
+          class="text-subtext-0 group-hover:text-success overflow-ellipsis whitespace-nowrap overflow-hidden"
         >
           {EMAIL_FOR_CONTACT}
         </span>
 
-        <Icon class="group-hover:text-green" name="fa6-solid:copy" />
+        <Icon class="group-hover:text-success" name="fa6-solid:copy" />
       </button>
 
       <Button className="text-xl">

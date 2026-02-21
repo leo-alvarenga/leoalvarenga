@@ -49,7 +49,7 @@ export const TECH_MAP: Record<string, Technology> = {
     label: "PostgreSQL",
   },
   bash: {
-    color: "var(--color-green)",
+    color: "var(--color-success)",
     label: "Bash",
   },
   docker: {
