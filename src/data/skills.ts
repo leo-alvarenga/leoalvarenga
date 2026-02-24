@@ -42,13 +42,13 @@ export const SKILLS: Skill[] = [
   },
   {
     front: {
-      bg: "var(--color-crust)",
+      bg: "var(--color-bg3)",
       content: "devicon-javascript-plain colored",
     },
     back: {
       bg: "#f0da4f",
       content: "JavaScript",
-      text: "var(--color-crust)",
+      text: "var(--color-bg3)",
     },
     id: "js",
   },
@@ -66,7 +66,7 @@ export const SKILLS: Skill[] = [
   },
   {
     front: {
-      bg: "var(--color-crust)",
+      bg: "var(--color-bg3)",
       content:
         "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/vitejs/vitejs-original.svg",
       isSrc: true,
@@ -76,19 +76,19 @@ export const SKILLS: Skill[] = [
       content: "Vite.js",
       style:
         "background-image: linear-gradient(-45deg, #bd34fe 0%, #47caff 100%);",
-      text: "var(--color-crust)",
+      text: "var(--color-bg3)",
     },
     id: "vite",
   },
   {
     front: {
-      bg: "var(--color-crust)",
+      bg: "var(--color-bg3)",
       content:
         "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/vitest/vitest-original.svg",
       isSrc: true,
     },
     back: {
-      bg: "var(--color-crust)",
+      bg: "var(--color-bg3)",
       content: "Vitest",
       text: "rgb(252, 199, 43)",
     },
@@ -96,7 +96,7 @@ export const SKILLS: Skill[] = [
   },
   {
     front: {
-      bg: "var(--color-crust)",
+      bg: "var(--color-bg3)",
       content: "devicon-react-original colored",
     },
     back: {
@@ -108,11 +108,11 @@ export const SKILLS: Skill[] = [
   },
   {
     front: {
-      bg: "var(--color-crust)",
+      bg: "var(--color-bg3)",
       content: "devicon-redux-original colored",
     },
     back: {
-      bg: "var(--color-crust)",
+      bg: "var(--color-bg3)",
       content: "Redux",
       text: "#764abd",
     },
@@ -144,11 +144,11 @@ export const SKILLS: Skill[] = [
   },
   {
     front: {
-      bg: "var(--color-crust)",
+      bg: "var(--color-bg3)",
       content: "devicon-astro-plain colored",
     },
     back: {
-      bg: "var(--color-crust)",
+      bg: "var(--color-bg3)",
       content: "Astro.js",
       text: "#ff5e00",
     },
@@ -156,7 +156,7 @@ export const SKILLS: Skill[] = [
   },
   {
     front: {
-      bg: "var(--color-crust)",
+      bg: "var(--color-bg3)",
       content: "devicon-svelte-plain colored",
     },
     back: {
@@ -180,24 +180,24 @@ export const SKILLS: Skill[] = [
   },
   {
     front: {
-      bg: "var(--color-crust)",
+      bg: "var(--color-bg3)",
       content: "/style-components.svg",
       isSrc: true,
     },
     back: {
       bg: "#8b56ba",
       content: "styled-components",
-      text: "var(--color-crust)",
+      text: "var(--color-bg3)",
     },
     id: "styled-components",
   },
   {
     front: {
-      bg: "var(--color-crust)",
+      bg: "var(--color-bg3)",
       content: "devicon-tailwindcss-original colored",
     },
     back: {
-      bg: "var(--color-crust)",
+      bg: "var(--color-bg3)",
       content: "TailwindCSS",
       text: "#39bef7",
     },
@@ -249,7 +249,7 @@ export const SKILLS: Skill[] = [
     back: {
       bg: "#faefde",
       content: "Bun",
-      text: "var(--color-crust)",
+      text: "var(--color-bg3)",
     },
     id: "bun",
   },
@@ -269,7 +269,7 @@ export const SKILLS: Skill[] = [
   },
   {
     front: {
-      bg: "var(--color-crust)",
+      bg: "var(--color-bg3)",
       content: "devicon-express-original",
     },
     back: {
@@ -281,13 +281,13 @@ export const SKILLS: Skill[] = [
   },
   {
     front: {
-      bg: "var(--color-crust)",
+      bg: "var(--color-bg3)",
       content: "devicon-nestjs-original colored",
     },
     back: {
       bg: "#de234f",
       content: "Nest.js",
-      text: "var(--color-crust)",
+      text: "var(--color-bg3)",
     },
     id: "nestjs",
   },
@@ -321,13 +321,13 @@ export const SKILLS: Skill[] = [
   },
   {
     front: {
-      bg: "var(--color-crust)",
+      bg: "var(--color-bg3)",
       content: "devicon-bash-plain",
     },
     back: {
-      bg: "var(--color-crust)",
+      bg: "var(--color-bg3)",
       content: "Bash",
-      text: "var(--color-green)",
+      text: "var(--color-success)",
     },
     id: "bash",
   },
@@ -355,7 +355,7 @@ export const SKILLS: Skill[] = [
     },
     id: "helm",
   },
-{
+  {
     front: {
       bg: "var(--color-text)",
       content: "devicon-azuredevops-plain colored",
@@ -369,13 +369,13 @@ export const SKILLS: Skill[] = [
   },
   {
     front: {
-      bg: "var(--color-crust)",
+      bg: "var(--color-bg3)",
       content:
         "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/firebase/firebase-original.svg",
       isSrc: true,
     },
     back: {
-      bg: "var(--color-crust)",
+      bg: "var(--color-bg3)",
       content: "Firebase",
       text: "#ffa200",
     },
@@ -383,19 +383,19 @@ export const SKILLS: Skill[] = [
   },
   {
     front: {
-      bg: "var(--color-crust)",
+      bg: "var(--color-bg3)",
       content: "devicon-git-plain colored",
     },
     back: {
       bg: "#f24e29",
       content: "git",
-      text: "var(--color-crust)",
+      text: "var(--color-bg3)",
     },
     id: "git",
   },
   {
     front: {
-      bg: "var(--color-crust)",
+      bg: "var(--color-bg3)",
       content:
         "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg",
       isSrc: true,
@@ -409,11 +409,11 @@ export const SKILLS: Skill[] = [
   },
   {
     front: {
-      bg: "var(--color-crust)",
+      bg: "var(--color-bg3)",
       content: "devicon-fastapi-plain colored",
     },
     back: {
-      bg: "var(--color-crust)",
+      bg: "var(--color-bg3)",
       content: "FastAPI",
       text: "#049689",
     },

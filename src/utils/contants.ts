@@ -14,7 +14,7 @@ import { Language } from "../config";
 import type { OpenGraphOptionsImage } from "./types";
 
 export const PAGE_TITLE_PREFFIX = "Leonardo Alvarenga";
-export const DEFAULT_PAGE_TITLE = `${PAGE_TITLE_PREFFIX} - Frontend Software Engineer`;
+export const DEFAULT_PAGE_TITLE = `${PAGE_TITLE_PREFFIX} - Software Engineer`;
 
 export const DEFAULT_DATE_FORMAT = "MMM, YYYY";
 
@@ -57,19 +57,19 @@ export const NAVBAR_LINKS = [
 
 export const HERO_HIGHLIGHTED_WORDS = [
   {
-    style: "text-green font-light font-petit-formal",
+    style: "text-accent1 font-light font-petit-formal",
     word: "hero.word.concept",
   },
   {
-    style: "text-blue font-audiowide",
+    style: "text-accent3 font-audiowide",
     word: "hero.word.cloud",
   },
   {
-    style: "text-peach font-anonymous",
+    style: "text-accent2 font-anonymous",
     word: "hero.word.scalable",
   },
   {
-    style: "text-maroon",
+    style: "text-accent4",
     word: "hero.word.scalable",
   },
 ];

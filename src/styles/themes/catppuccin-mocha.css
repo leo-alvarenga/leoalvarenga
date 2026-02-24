@@ -1,0 +1,18 @@
+.theme-catppuccin {
+  --color-bg1: #1e1e2e;
+  --color-bg2: #181825;
+  --color-bg3: #11111b;
+
+  --color-accent: #cba6f7;
+  --color-accent1: #cba6f7;
+  --color-accent2: #fab387;
+  --color-accent3: #89b4fa;
+  --color-accent4: #eba0ac;
+
+  --color-error: #f38ba8;
+  --color-success: #a6e3a1;
+  --color-warning: #f9e2af;
+
+  --color-text: #cdd6f4;
+  --color-subtext-1: #bac2de;
+}

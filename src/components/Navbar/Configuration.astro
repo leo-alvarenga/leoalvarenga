@@ -1,81 +1,36 @@
 ---
 import { Icon } from "astro-icon/components";
-
-import { getLangFromUrl, Language } from "../config";
-import { LANGUAGE_HINTS, LANGUAGE_LABELS } from "../utils";
-
-const { url } = Astro;
-const [current] = getLangFromUrl(url);
-
-const currentLabel = LANGUAGE_LABELS[current];
-
-function getSortedLangs() {
-  const filtered = Object.entries(LANGUAGE_LABELS).filter(
-    ([key]) => key !== current
-  );
-
-  return [[current, currentLabel], ...filtered];
-}
+import Button from "../Button.astro";
 ---
 
+<button onclick="toggleConfiguration()">
+  <Button className="p-2" >
+    <Icon name="fa6-solid:language" />
+    <Icon name="fa6-solid:gear" />
+  </Button>
+</button>
+
 <div
+  id="configuration"
   class={`
-    p-2 bg-bg3
-    fixed bottom-4 left-4
-    flex flex-col cursor-pointer
-    items-center rounded-lg
+    z-50 absolute flex items-center
+    justify-center w-[40dvw] p-4
+    md:w-[20dvw] right-2 -bottom-8
+    bg-bg3 rounded-lg overflow-hidden
+    max-h-0 transition-all duration-300
   `}
-  onclick="toggleLangSelector()"
 >
-  <span class="flex items-center justify-center w-full hover:text-subtext-0">
-    <span
-      class="overflow-hidden h-fit w-fit opacity-100 duration-200 transition-all"
-      id="lang-selector-title"
-    >
-      {currentLabel}
-    </span>
-
-    <span
-      class="overflow-hidden pb-1 h-0 w-0 opacity-0 duration-200 transition-all"
-      id="lang-selector-close-btn"
-    >
-      <Icon name="fa6-solid:xmark" />
-    </span>
-  </span>
-
-  <div
-    class={`
-      cursor-pointer
-      flex flex-col gap-2
-      w-full max-h-0 overflow-hidden
-      duration-250 transition-all
-    `}
-    id="lang-selector-options"
-  >
-    {
-      getSortedLangs().map(([lang, label], i) => (
-        <button
-          class={`
-            ${i === 0 ? "mt-2" : ""}
-            cursor-pointer
-            rounded-md px-2 text-center
-            hover:bg-surface-0 hover:text-subtext-0
-            ${lang === current ? "underline" : ""}
-          `}
-          data-lang={lang}
-          onclick="changeLanguage(this)"
-          title={LANGUAGE_HINTS[lang as Language]}
-        >
-          {label}
-        </button>
-      ))
-    }
-  </div>
+ aaaa
 </div>
 
-<script is:inline src="/scripts/i18n.js"></script>
-
 <script lang="js">
+  function toggleConfiguration() {
+    const config = document.getElementById("configuration");
+    if (!config) return;
+
+    config.classList.toggle("hidden");
+  }
+
   function toggleLangSelectorList(open = false) {
     const optionList = document.getElementById("lang-selector-options");
     if (!optionList) return;

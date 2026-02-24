@@ -1,0 +1,18 @@
+.theme-onedark {
+  --color-bg1: #21252b; /* bg0: One Dark background */
+  --color-bg2: #282c34; /* bg1: One Dark darker background */
+  --color-bg3: #3a3f4b; /* bg2: One Dark lighter background */
+
+  --color-accent: #e5c07b;
+  --color-accent1: #e5c07b;
+  --color-accent2: #98c379;
+  --color-accent3: #61afef;
+  --color-accent4: #e06c75; /* red: One Dark error */
+
+  --color-error: #e06c75; /* red: One Dark error */
+  --color-success: #98c379; /* green: One Dark success */
+  --color-warning: #e5c07b; /* yellow: One Dark warning */
+
+  --color-text: #abb2bf; /* fg: One Dark main text */
+  --color-subtext-1: #abb2bf;
+}
