@@ -14,7 +14,7 @@ import { Language } from "../config";
 import type { OpenGraphOptionsImage } from "./types";
 
 export const PAGE_TITLE_PREFFIX = "Leonardo Alvarenga";
-export const DEFAULT_PAGE_TITLE = `${PAGE_TITLE_PREFFIX} - Frontend Software Engineer`;
+export const DEFAULT_PAGE_TITLE = `${PAGE_TITLE_PREFFIX} - Software Engineer`;
 
 export const DEFAULT_DATE_FORMAT = "MMM, YYYY";
 
