@@ -123,7 +123,7 @@ export const EXPERIENCES: Xp[] = [
       TECH_MAP.bash,
     ],
 
-    start: "2022-08",
+    start: "2022-09",
     end: "2023-02",
   },
   {
@@ -142,7 +142,7 @@ export const EXPERIENCES: Xp[] = [
       [Language.portugues]:
         "Estabilização e monitoramento de serviços, com atuação na configuração de ambientes via Kubernetes e Docker Compose para assegurar a disponibilidade de aplicações de teste. Provisionamento de infraestrutura escalável, incluindo a criação e o ajuste de clusters Kubernetes para ambientes de demonstração e homologação. Integração em frentes de DevOps em projetos internacionais, com foco na automação de processos de Governança de TI e na otimização do fluxo de demandas de ambiente. Desenvolvimento e refinamento de pipelines de CI/CD, aplicando conceitos de conteinerização e acompanhamento de métricas de observabilidade para suporte à qualidade do código. Suporte técnico aos times de engenharia, com atuação na triagem de inconsistências de deployment e na garantia de paridade entre ambientes de desenvolvimento e produção",
     },
-    end: "2022-9",
+    end: "2022-8",
     icon: "fa6-solid:gears",
     position: {
       [Language.english]: "Intern DevOps Engineer",
