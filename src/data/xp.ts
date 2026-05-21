@@ -35,9 +35,9 @@ export const EXPERIENCES: Xp[] = [
     },
     description: {
       [Language.english]:
-        "Development and automation of corporate web applications with emphasis on scalability, standardization, and infrastructure. Creation of IaC using Terraform, along with Helm Charts and Kubernetes manifests for provisioning and orchestration. Configuration and maintenance of CI/CD pipelines with GitHub Actions. Definition of development standards and implementation of git hooks. Design and maintenance of internal libraries and base applications in React, TypeScript, and TailwindCSS",
+        "Implementation of Infrastructure as Code (IaC) using Terraform, automating environment provisioning and version control, resulting in a reduction of manual setup time from 4 hours to just 20 minutes; . Development of Helm Charts for deployments in Kubernetes, ensuring standardization and consistent management of services across development, staging, and production environments; . Engineering and optimization of interfaces in React and TypeScript for corporate Geographic Information Systems (GIS), focusing on performance improvements and reducing load times for large data volumes; . Acted as a technical reference in DevOps and Front-end areas, establishing development best practices and ensuring software architecture scalability.",
       [Language.portugues]:
-        "Desenvolvimento e automação de aplicações web corporativas com foco em escalabilidade, padronização e infraestrutura. Criação de IaC com Terraform, além de Helm Charts e manifestos Kubernetes para provisionamento e orquestração. Configuração e manutenção de pipelines CI/CD com GitHub Actions. Definição de padrões de desenvolvimento e implementação de git hooks. Concepção e manutenção de bibliotecas internas e aplicações em React, TypeScript e TailwindCSS",
+        "Implementação de Infraestrutura como Código (IaC) utilizando Terraform, automatizando o provisionamento de ambientes e controle de versão, resultando na redução do tempo de configuração manual de 4 horas para apenas 20 minutos; Desenvolvimento de Helm Charts para implantações em Kubernetes, garantindo padronização e gestão consistente de serviços nos ambientes de desenvolvimento, homologação e produção; Engenharia e otimização de interfaces em React e TypeScript para Sistemas de Informação Geográfica (SIG) corporativos, com foco em melhorias de performance e redução do tempo de carregamento para grandes volumes de dados; Atuei como referência técnica nas áreas de DevOps e Front-end, estabelecendo melhores práticas de desenvolvimento e garantindo a escalabilidade da arquitetura de software.",
     },
     icon: "fa6-solid:screwdriver-wrench",
     position: {
@@ -69,14 +69,15 @@ export const EXPERIENCES: Xp[] = [
     },
     description: {
       [Language.english]:
-        "Active role in the Viridis NG development team, being responsible for the implementation of new features, API integrations, bug fixing and performance optimizations in the frontend using a stack composed of React, TypeScript, Styled components and Postgresql. Also responsible for bug fixing in one of the project’s REST APIs, using Node.js and Express",
+        "Development of Viridis NG, a web application ecosystem focused on optimizing energy and material consumption in the steel industry, serving more than 8 globally scaled industrial plants. Engineering high-performance features and components for the internal Design System, emphasizing standardization and reuse by multiple teams across different projects. Architecture and maintenance of REST APIs with Node.js and Express, including endpoint documentation and the definition of versioning strategies to ensure service integrity. Refactoring and optimization of critical modules, applying design patterns to ensure code scalability and maintainability. Ensuring technical parity and international collaboration, acting at the interface between complex industrial requirements and the delivery of high-availability software.",
       [Language.portugues]:
-        "Papel ativo na equipe de desenvolvimento do Viridis NG, sendo responsável pela implementação de novos recursos, integrações de API, correção de bugs e otimizações de desempenho no frontend utilizando uma stack composta por React, TypeScript, Styled components e PostgreSQL. Também responsável pela correção de bugs em uma das APIs REST do projeto, utilizando Node.js e Express",
+        "Desenvolvimento do Viridis NG, ecossistema de aplicações web voltado à otimização de consumo energético e de materiais na indústria siderúrgica, atendendo a mais de 8 plantas industriais de escala global. Engenharia de funcionalidades e componentes de alta performance para Design System interno, com foco em padronização e reutilização por múltiplos times em diferentes projetos. Arquitetura e manutenção de APIs REST com Node.js e Express, abrangendo a documentação de endpoints e a definição de estratégias de versionamento para garantir a integridade dos serviços. Refatoração e otimização de módulos críticos, aplicando padrões de projeto (Design Patterns) para assegurar a escalabilidade e a manutenibilidade do código. Garantia de paridade técnica e colaboração internacional, atuando na interface entre requisitos industriais complexos e entregas de software de alta disponibilidade",
     },
     icon: "fa6-solid:code",
     position: {
-      [Language.english]: "Front-end Software Engineer",
-      [Language.portugues]: "Engenheiro de Software Front-end",
+      [Language.english]: "Front-end Software Engineer (React/TypeScript)",
+      [Language.portugues]:
+        "Engenheiro de Software Front-end (React/TypeScript)",
     },
     stack: [
       TECH_MAP.ts,
@@ -93,37 +94,6 @@ export const EXPERIENCES: Xp[] = [
     end: "2025-07",
   },
   {
-    company: {},
-    description: {
-      [Language.english]:
-        "Design, development, and deployment of front-end web applications using a variety of tech stacks tailored to meet each client's specific needs. Additional responsibilities include implementing new features in existing applications, API integration, bug fixing, and front-end performance optimization",
-      [Language.portugues]:
-        "Concepção, implementação e provisionamento de aplicações web, utilizando diferentes stacks, de forma a melhor acomodar as necessidades do contratante. Responsabilidades adicionais incluem implementação de novas funcionalidades em aplicações já existentes, integração de APIs, correções de bugs e otimizações de desempenho no front-end",
-    },
-    icon: "fa6-solid:laptop-code",
-    position: {
-      [Language.english]: "Freelance FullStack Developer",
-      [Language.portugues]: "Desenvolvedor FullStack Freelancer",
-    },
-    stack: [
-      TECH_MAP.ts,
-      TECH_MAP.react,
-      TECH_MAP.next,
-      TECH_MAP.styledComponents,
-      TECH_MAP.tailwindcss,
-      TECH_MAP.mui,
-      TECH_MAP.nodejs,
-      TECH_MAP.express,
-      TECH_MAP.nest,
-      TECH_MAP.python,
-      TECH_MAP.fastapi,
-      TECH_MAP.postgresql,
-      TECH_MAP.firebase,
-    ],
-    start: "2022-10",
-    end: "2025-07",
-  },
-  {
     company: {
       name: "Vetta",
       page: "https://vetta.digital",
@@ -135,14 +105,14 @@ export const EXPERIENCES: Xp[] = [
     },
     description: {
       [Language.english]:
-        "Active role in the Viridis NG development team where I was responsible for the implementation of new features, API integrations and bug fixing in the frontend using a stack composed of React, TypeScript, Styled components and Postgresql",
+        "Support and guarantee of high availability (99% uptime SLAs) for critical services, orchestrating mission-critical environments via Kubernetes and Docker Compose. Autonomous management of Cloud-Native infrastructure, responsible for provisioning and governance of Kubernetes clusters for multiple internal products. Technical interface in international projects, strategically acting in DevOps and IT Governance to accelerate time-to-market through advanced automation. Mastery of the delivery lifecycle (CI/CD), designing deployment pipelines and monitoring/observability strategies to ensure software resilience in production. Point of reference for engineering teams, solving complex architecture, deployment, and environment configuration impediments.",
       [Language.portugues]:
-        "Papel ativo na equipe de desenvolvimento do Viridis NG, onde fui responsável pela implementação de novos recursos, integrações de API e correção de bugs no frontend utilizando uma stack composta por React, TypeScript, Styled components e PostgreSQL",
+        "Sustentação e garantia de alta disponibilidade (SLAs de 99% uptime) para serviços críticos, orquestrando ambientes de missão oficial via Kubernetes e Docker Compose. Gestão autônoma de infraestrutura Cloud-Native, sendo responsável pelo provisionamento e governança de clusters Kubernetes para múltiplos produtos internos. Interface técnica em projetos internacionais, atuando estrategicamente em frentes de DevOps e Governança de TI para acelerar o time-to-market através de automação avançada. Domínio do ciclo de vida de entrega (CI/CD), projetando pipelines de deploy e estratégias de monitoramento/observabilidade para garantir a resiliência do software em produção. Ponto de referência para times de engenharia, solucionando impedimentos complexos de arquitetura, deployment e configurações de ambiente",
     },
     icon: "fa6-solid:code",
     position: {
-      [Language.english]: "Intern Front-end Software Developer",
-      [Language.portugues]: "Desenvolvedor Front-end Estagiário",
+      [Language.english]: "DevOps Engineer",
+      [Language.portugues]: "Engenheiro DevOps",
     },
     stack: [
       TECH_MAP.ts,
@@ -153,7 +123,7 @@ export const EXPERIENCES: Xp[] = [
       TECH_MAP.bash,
     ],
 
-    start: "2022-10",
+    start: "2022-08",
     end: "2023-02",
   },
   {
@@ -168,9 +138,9 @@ export const EXPERIENCES: Xp[] = [
     },
     description: {
       [Language.english]:
-        "Pivotal role in ensuring high availability of internal services hosted using Kubernetes and Docker compose, as well as in IT governance and access control. Occasionally responsible for the provisioning of demo and development environments for different products in Kubernetes clusters, giving feedback and handling DevOps tasks involving international teams when necessary",
+        "Stabilization and monitoring of services, working on environment configuration via Kubernetes and Docker Compose to ensure the availability of test applications. Provisioning of scalable infrastructure, including the creation and tuning of Kubernetes clusters for demonstration and staging environments. Involvement in DevOps initiatives in international projects, focusing on automation of IT Governance processes and optimization of environment demand workflows. Development and refinement of CI/CD pipelines, applying containerization concepts and monitoring observability metrics to support code quality. Technical support for engineering teams, handling deployment inconsistencies and ensuring parity between development and production environments.",
       [Language.portugues]:
-        "Papel fundamental na garantia da alta disponibilidade dos serviços internos hospedados usando Kubernetes e Docker Compose, assim como na governança de TI e controle de acesso. Ocasionalmente responsável pelo provisionamento de ambientes de demonstração e desenvolvimento para diferentes produtos em clusters Kubernetes, dando feedback e lidando com tarefas de DevOps envolvendo equipes internacionais quando necessário",
+        "Estabilização e monitoramento de serviços, com atuação na configuração de ambientes via Kubernetes e Docker Compose para assegurar a disponibilidade de aplicações de teste. Provisionamento de infraestrutura escalável, incluindo a criação e o ajuste de clusters Kubernetes para ambientes de demonstração e homologação. Integração em frentes de DevOps em projetos internacionais, com foco na automação de processos de Governança de TI e na otimização do fluxo de demandas de ambiente. Desenvolvimento e refinamento de pipelines de CI/CD, aplicando conceitos de conteinerização e acompanhamento de métricas de observabilidade para suporte à qualidade do código. Suporte técnico aos times de engenharia, com atuação na triagem de inconsistências de deployment e na garantia de paridade entre ambientes de desenvolvimento e produção",
     },
     end: "2022-9",
     icon: "fa6-solid:gears",
@@ -180,36 +150,5 @@ export const EXPERIENCES: Xp[] = [
     },
     stack: [TECH_MAP.bash, TECH_MAP.docker, TECH_MAP.k8s, TECH_MAP.azureDevOps],
     start: "2021-03",
-  },
-  {
-    company: {
-      name: "UFV (NuPESSC)",
-      page: "http://nupessc.caf.ufv.br",
-      logo: "nupessc",
-      location: {
-        [Language.english]: "Florestal, Brazil",
-        [Language.portugues]: "Florestal, MG",
-      },
-    },
-    description: {
-      [Language.english]:
-        "Scientific Initiation (Undergraduate Research), occasionally acting as QA Analyst and working mostly in the management, as Scrum Master and PO, and infrastructure, as a mix of DevOps Analyst and DB Admin in a MVP of a web app aimed at providing a virtual laboratory and learning environment developed by the NuPESSC research group",
-      [Language.portugues]:
-        "Iniciação Cientifica, ocasionalmente atuando como Analista de QA e trabalhando majoritariamente na gerência como Scrum Master e PO, e na infraestrutura, como um mix de Analista DevOps Analyst e DB Admin em um MVP de um web app focado em prover laboratórios e ambientes de aprendizado virtuais desenvolvido pelo NuPESSC",
-    },
-    end: "2022-10",
-    icon: "fa6-solid:flask-vial",
-    position: {
-      [Language.english]: "Scientific Initiation",
-      [Language.portugues]: "Iniciação Cientifica",
-    },
-    stack: [
-      TECH_MAP.bash,
-      TECH_MAP.docker,
-      TECH_MAP.firebase,
-      TECH_MAP.ts,
-      TECH_MAP.js,
-    ],
-    start: "2022-03",
   },
 ];
