@@ -6,11 +6,8 @@
 @import "tailwindcss";
 
 @import "./themes/catppuccin-mocha.css";
-@import "./themes/everforest.css";
-@import "./themes/github.css";
-@import "./themes/onedark.css";
-@import "./themes/rosepine.css";
-@import "./themes/tokyonight.css";
+@import "./themes/kanagawa.css";
+@import "./themes/catppuccin-latte.css";
 
 @theme {
   --color-bg1: #1e1e2e;

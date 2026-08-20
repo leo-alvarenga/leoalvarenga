@@ -58,7 +58,12 @@ const openGraphOptions: OpenGraphOptions = {
     <ClientRouter />
   </head>
 
-  <body class="theme-kanagawa bg-bg1 m-0 select-none text-text w-full">
+  <body class="theme-catppuccin bg-bg1 m-0 select-none text-text w-full">
+    <script is:inline>
+      if (localStorage.getItem("theme")) {
+        document.body.classList.add("theme-" + localStorage.getItem("theme"));
+      }
+    </script>
     <slot />
 
     <script is:inline src="/scripts/ref.js"></script>
