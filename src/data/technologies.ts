@@ -52,6 +52,14 @@ export const TECH_MAP: Record<string, Technology> = {
     color: "var(--color-success)",
     label: "Bash",
   },
+  nix: {
+    label: "Nix",
+    color: "#5277C3",
+  },
+  lua: {
+    label: "Lua",
+    color: "#000080",
+  },
   docker: {
     color: "#029cc7",
     label: "Docker",
