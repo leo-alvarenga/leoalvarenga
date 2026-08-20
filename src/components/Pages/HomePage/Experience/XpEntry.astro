@@ -17,6 +17,9 @@ const { t } = useTranslation({ language });
 
 const { company, description, icon, position, stack } = xp;
 const { location, name, page } = company;
+
+const descriptionText = translatableTextToString(description, language);
+const longDescription = descriptionText.length > 200;
 ---
 
 <div
@@ -27,6 +30,7 @@ const { location, name, page } = company;
     ${toggleable ? "hidden" : ""}
   `}
   data-xptoggleable={String(toggleable || false)}
+  data-xpcard
 >
   <span
     class="absolute left-[-15px] border-2 aspect-square flex items-center justify-center rotate-45 border-accent1 p-1 rounded-md text-xs bg-bg3"
@@ -99,9 +103,30 @@ const { location, name, page } = company;
       </span>
     </hgroup>
 
-    <p class="text-subtext-1">
-      {translatableTextToString(description, language)}
+    <p class="text-subtext-1 xp-desc" data-xpdesc>
+      {descriptionText}
     </p>
+
+    {
+      longDescription && (
+        <button
+          class="inline-default text-sm text-accent1 mt-[-24px] cursor-pointer hover:underline"
+          data-xpdestoggle
+        >
+          <span class="flex gap-2 items-center" data-xpdesclabel>
+            {t("xp.desc.more")}
+
+            <Icon name="fa6-solid:angles-down" />
+          </span>
+
+          <span class="flex gap-2 items-center hidden" data-xpdesclabel>
+            {t("xp.desc.less")}
+
+            <Icon name="fa6-solid:angles-up" />
+          </span>
+        </button>
+      )
+    }
 
     <div class="flex gap-2 flex-wrap items-center justify-start">
       {
@@ -112,3 +137,16 @@ const { location, name, page } = company;
     </div>
   </div>
 </div>
+
+<style>
+  .xp-desc {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    overflow: hidden;
+  }
+
+  .xp-desc[data-expanded] {
+    -webkit-line-clamp: unset;
+  }
+</style>

@@ -117,4 +117,17 @@ const visibleItemCount = 2;
   }
 
   setup();
+
+  document.addEventListener("click", (e) => {
+    const btn = e.target.closest("[data-xpdestoggle]");
+    if (!btn) return;
+
+    const card = btn.closest("[data-xpcard]");
+    const desc = card?.querySelector("[data-xpdesc]");
+    if (!desc) return;
+
+    const expanded = desc.hasAttribute("data-expanded");
+    desc.toggleAttribute("data-expanded", !expanded);
+    card?.querySelectorAll("[data-xpdesclabel]").forEach((label) => label.classList.toggle("hidden"));
+  });
 </script>
