@@ -14,6 +14,7 @@
   "commons.hide": "Hide",
   "commons.location.remote": "Remote",
   "commons.company.freelance": "Freelance",
+  "commons.gh.seeMore": "See more projects",
 
   "nav.name": "Leo Alvarenga",
   "footer.text": "Written with care in VS Code, shaped with Astro.js and TailwindCSS, and launched into the digital cosmos from my own little corner of the web",
