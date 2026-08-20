@@ -90,10 +90,4 @@ function load() {
   sync();
 }
 
-function setup() {
-  load();
-
-  setInterval(load, 500);
-}
-
-setup();
+load();

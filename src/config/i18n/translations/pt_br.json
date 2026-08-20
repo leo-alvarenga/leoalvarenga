@@ -17,7 +17,7 @@
   "commons.gh.seeMore": "Veja mais projetos",
 
   "nav.name": "Leo Alvarenga",
-  "footer.text": "Escrito com carinho no VS Code, moldado com Astro.js e TailwindCSS, e lançado ao universo digital direto do meu próprio espaço na web",
+  "footer.text": "Escrito com carinho no NeoVim, moldado com Astro.js e TailwindCSS, e lançado ao universo digital direto do meu próprio espaço na web",
 
   "home.title": "Início",
   "home.meta.title": "Saiba mais sobre mim",
@@ -47,6 +47,7 @@
   "home.contact.status": "Disponível para novos desafios",
   "home.contact.cv.action": "Baixe meu currículo",
   "home.contact.email.action": "Me envie um email",
+  "home.contact.email.success": "Email copiado para a área de transferência!",
   "home.contact.email.tip": "Clique para copiar para a área de transferência",
 
   "404.title": "Erro 404 - Página fora de órbita",

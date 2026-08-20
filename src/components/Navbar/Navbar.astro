@@ -7,7 +7,6 @@ import {
 } from "../../config";
 import { NAVBAR_LINKS } from "../../utils";
 import Brand from "./Brand.astro";
-import Configuration from "./Configuration.astro";
 
 const { url } = Astro;
 
@@ -68,10 +67,6 @@ const getMenuItemClass = (baseHref: string) => {
           </a>
         ))
       }
-    </span>
-
-    <span class="ml-auto hidden">
-      <Configuration />
     </span>
   </div>
 </nav>

@@ -76,6 +76,12 @@ export const HERO_HIGHLIGHTED_WORDS = [
 
 export const FOOTER_LINKS = [
   {
+    color: "#7db643",
+    href: "https://neovim.io/",
+    icon: "devicon-neovim-plain colored",
+    word: "NeoVim",
+  },
+  {
     color: "#ff5e00",
     href: "https://astro.build/",
     icon: "devicon-astro-plain",

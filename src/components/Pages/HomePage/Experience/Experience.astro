@@ -50,74 +50,32 @@ const visibleItemCount = 2;
 </Section>
 
 <script lang="js">
-  const xp = {
-    debug: true,
-    displayAll: false,
-  };
+  const xp = { displayAll: false };
 
   const control = document.getElementById("xp-entry-control");
   const listWrapper = document.getElementById("xp-list");
 
-  function debug(messages, mode = 'log') {
-    if (!xp.debug) return;
-    if (typeof messages !== 'string' && typeof messages !== 'object') return;
-
-    if (console[mode]) {
-      console[mode]("[XP]", ...(Array.isArray(messages) ? messages : [messages]));
-
-      return;
-    }
-
-    console.log("[XP]", ...(Array.isArray(messages) ? messages : [messages]));
-  }
-
   function handleDisplayAllXpEntries() {
-    try {
-      debug(`Previous value: ${xp.displayAll}; New: ${!xp.displayAll}`);
-      xp.displayAll = !xp.displayAll;
+    xp.displayAll = !xp.displayAll;
 
-      const xpEntries = listWrapper?.querySelectorAll("[data-xptoggleable='true']");
+    const xpEntries = listWrapper?.querySelectorAll("[data-xptoggleable='true']");
+    if (!xpEntries?.length) return;
 
-      if (!xpEntries?.length) {
-        debug(`No xp entries found!`);
-
-        return;
-      }
-
-      for (const xp of xpEntries) {
-        debug(["Xp entry found!", xp]);
-
-        xp.classList.toggle("hidden");
-      }
-
-      const labels = control?.querySelectorAll("[data-xplabel='true']");
-      debug("Replacing label...");
-
-      for (const label of labels ?? []) {
-        label.classList.toggle("hidden");
-      }
-
-      if (!xp.displayAll) scrollToXp?.();
-    } catch (e) {
-      debug(e);
-    }
-  }
-
-  function setup() {
-    debug("Setting up");
-
-    if (listWrapper) {
-      debug("Wrapper found");
-
-      return;
+    for (const entry of xpEntries) {
+      entry.classList.toggle("hidden");
     }
 
-    debug("Wrapper not found");
-    control?.classList.toogle("hidden");
+    const labels = control?.querySelectorAll("[data-xplabel='true']");
+    for (const label of labels ?? []) {
+      label.classList.toggle("hidden");
+    }
+
+    if (!xp.displayAll) scrollToXp?.();
   }
 
-  setup();
+</script>
 
+<script lang="js">
   document.addEventListener("click", (e) => {
     const btn = e.target.closest("[data-xpdestoggle]");
     if (!btn) return;

@@ -61,21 +61,6 @@ const openGraphOptions: OpenGraphOptions = {
   <body class="theme-kanagawa bg-bg1 m-0 select-none text-text w-full">
     <slot />
 
-    <div class="hidden w-full">
-      <!--
-        This is a list of all colors that are present but no explicitly used;
-        
-        This exists here to ensure the related classnames will be available
-        during development, as otherwise they would only be compiled by Tailwind
-        at build time.
-      -->
-      <div class="flex items-center w-full flex-wrap" id="colors">
-        <span class="bg-success text-success border-success w-2 h-2"></span>
-        <span class="bg-error text-error border-error w-2 h-2"></span>
-        <span class="bg-warning text-warning border-warning w-2 h-2"></span>
-      </div>
-
-      <script is:inline src="/scripts/ref.js"></script>
-    </div>
+    <script is:inline src="/scripts/ref.js"></script>
   </body>
 </html>

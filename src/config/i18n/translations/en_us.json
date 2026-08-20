@@ -17,7 +17,7 @@
   "commons.gh.seeMore": "See more projects",
 
   "nav.name": "Leo Alvarenga",
-  "footer.text": "Written with care in VS Code, shaped with Astro.js and TailwindCSS, and launched into the digital cosmos from my own little corner of the web",
+  "footer.text": "Written with care in NeoVim, shaped with Astro.js and TailwindCSS, and launched into the digital cosmos from my own little corner of the web",
 
   "home.title": "Home",
   "home.meta.title": "Learn more about me",
@@ -47,6 +47,7 @@
   "home.contact.status": "Available for new challenges",
   "home.contact.cv.action": "Download my CV",
   "home.contact.email.action": "Email me",
+  "home.contact.email.success": "Email copied to the clipboard!",
   "home.contact.email.tip": "Click to copy to your clipboard",
 
   "404.title": "404 Error - Page Out of Orbit",

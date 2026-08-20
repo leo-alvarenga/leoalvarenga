@@ -39,6 +39,7 @@ const contactClasses = {
   <button
     class={contactClasses.anchor}
     data-email={EMAIL_FOR_CONTACT}
+    data-success={t("home.titlecard.email.action.success")}
     id="email-action"
   >
     <span class={contactClasses.preffix}>
@@ -68,25 +69,21 @@ const contactClasses = {
 </div>
 
 <script lang="js">
-  function handleEmailAction({ target }) {
-    const email = target.getAttribute("data-email");
+  const emailAction = document.getElementById("email-action");
+  const emailActionText = document.getElementById("email-action-text");
 
-    navigator.clipboard.writeText(String(email));
+  if (emailAction && emailActionText) {
+    emailAction.addEventListener("click", async () => {
+      const email = emailAction.getAttribute("data-email");
+      const successLabel = emailAction.getAttribute("data-success");
+      const originalLabel = emailActionText.textContent;
+
+      await navigator.clipboard.writeText(String(email));
+
+      emailActionText.textContent = successLabel;
+      setTimeout(() => {
+        emailActionText.textContent = originalLabel;
+      }, 1500);
+    });
   }
-
-  function setup() {
-    const emailtToBtn = document.getElementById("email-action");
-
-    if (!emailtToBtn) {
-      console.error(
-        "Email action is not currently avaible. Only redirecting will work"
-      );
-
-      return;
-    }
-
-    emailtToBtn.addEventListener("click", handleEmailAction, false);
-  }
-
-  setup();
 </script>
