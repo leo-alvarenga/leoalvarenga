@@ -5,9 +5,9 @@ import {
   getLangFromUrl,
   useTranslation,
 } from "../../config";
-import { NAVBAR_LINKS } from "../../utils";
+import { LANGUAGE_HINTS, LANGUAGE_LABELS, NAVBAR_LINKS } from "../../utils";
 import Brand from "./Brand.astro";
-import Configuration from "./Configuration.astro";
+import { Icon } from "astro-icon/components";
 
 const { url } = Astro;
 
@@ -45,7 +45,7 @@ const getMenuItemClass = (baseHref: string) => {
     class={`
     ${commonClasses}
     w-full md:w-[70vw] relative
-    gap-2 p-2 text-lg
+    gap-2 p-2 text-lg z-50
     transition-all duration-250
   `}
   >
@@ -69,9 +69,119 @@ const getMenuItemClass = (baseHref: string) => {
         ))
       }
     </span>
+  </div>
 
-    <span class="ml-auto hidden">
-      <Configuration />
-    </span>
+  <div class="ml-auto md:ml-0 flex items-center gap-2">
+    <button
+      id="theme-toggle"
+      type="button"
+      class="flex items-center gap-2 px-3 py-2 rounded-lg bg-bg3 text-accent hover:opacity-70 transition-all duration-250"
+      title="Change theme"
+      aria-label="Change theme"
+    >
+      <Icon name="fa6-solid:palette" />
+      <span id="theme-label" class="text-sm hidden sm:inline">Catppuccin Mocha</span>
+    </button>
+
+    <div class="relative">
+      <button
+        id="lang-toggle"
+        type="button"
+        class="flex items-center gap-2 px-3 py-2 rounded-lg bg-bg3 text-accent hover:opacity-70 transition-all duration-250"
+        aria-haspopup="listbox"
+        aria-expanded="false"
+        aria-controls="lang-dropdown"
+        title={LANGUAGE_HINTS[language]}
+      >
+        <Icon name="fa6-solid:globe" />
+        <span class="text-sm hidden sm:inline">{LANGUAGE_LABELS[language]}</span>
+        <span class="text-sm sm:hidden">{language === DEFAULT_LANG ? "EN" : "PT"}</span>
+        <Icon name="fa6-solid:chevron-down" />
+      </button>
+
+      <ul
+        id="lang-dropdown"
+        role="listbox"
+        class="absolute right-0 mt-2 min-w-[10rem] hidden flex-col gap-1 p-2 rounded-lg bg-bg3 border border-bg2 shadow-lg z-50"
+      >
+        {
+          Object.entries(LANGUAGE_LABELS).map(([lang, label]) => (
+            <li role="option" aria-selected={lang === language}>
+              <button
+                type="button"
+                class={`w-full text-left px-2 py-1 rounded-md hover:opacity-70 ${lang === language ? "underline" : ""}`}
+                data-lang={lang}
+              >
+                {label}
+              </button>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
   </div>
 </nav>
+
+<script is:inline src="/scripts/i18n.js"></script>
+
+<script>
+  const THEMES = [
+    { id: "catppuccin", label: "Catppuccin Mocha" },
+    { id: "kanagawa", label: "Kanagawa Wave" },
+    { id: "latte", label: "Catppuccin Latte" },
+  ];
+
+  const themeBtn = document.getElementById("theme-toggle");
+  const themeLabel = document.getElementById("theme-label");
+
+  function currentTheme() {
+    const saved = localStorage.getItem("theme");
+    return saved && THEMES.some((t) => t.id === saved) ? saved : THEMES[0].id;
+  }
+
+  function applyTheme(id) {
+    THEMES.forEach((t) =>
+      document.body.classList.toggle("theme-" + t.id, t.id === id)
+    );
+    localStorage.setItem("theme", id);
+    if (themeLabel) themeLabel.textContent = THEMES.find((t) => t.id === id).label;
+  }
+
+  applyTheme(currentTheme()); // re-apply on view-transition navigation
+  themeBtn?.addEventListener("click", () => {
+    const cur = currentTheme();
+    const i = THEMES.findIndex((t) => t.id === cur);
+    applyTheme(THEMES[(i + 1) % THEMES.length].id);
+  });
+
+  // ---- Language dropdown ----
+  const langBtn = document.getElementById("lang-toggle");
+  const dropdown = document.getElementById("lang-dropdown");
+
+  function setLangOpen(open) {
+    dropdown.classList.toggle("hidden", !open);
+    langBtn.setAttribute("aria-expanded", String(open));
+  }
+  function closeLang() {
+    setLangOpen(false);
+  }
+
+  langBtn?.addEventListener("click", (e) => {
+    e.stopPropagation();
+    setLangOpen(langBtn.getAttribute("aria-expanded") !== "true");
+  });
+
+  dropdown?.querySelectorAll("[data-lang]").forEach((opt) => {
+    opt.addEventListener("click", (e) => {
+      e.stopPropagation();
+      const lang = opt.dataset.lang;
+      closeLang();
+      document.dispatchEvent(new CustomEvent("lang_change", { detail: lang }));
+    });
+  });
+
+  document.addEventListener("click", closeLang);
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") closeLang();
+  });
+</script>

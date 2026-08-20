@@ -57,24 +57,30 @@ export const NAVBAR_LINKS = [
 
 export const HERO_HIGHLIGHTED_WORDS = [
   {
-    style: "text-accent1 font-light font-petit-formal",
-    word: "hero.word.concept",
-  },
-  {
-    style: "text-accent3 font-audiowide",
-    word: "hero.word.cloud",
-  },
-  {
-    style: "text-accent2 font-anonymous",
-    word: "hero.word.scalable",
+    style: "text-accent1 font-audiowide",
+    word: "hero.word.complex",
   },
   {
     style: "text-accent4",
-    word: "hero.word.scalable",
+    word: "hero.word.data-heavy",
+  },
+  {
+    style: "text-success font-anonymous",
+    word: "hero.word.terminal",
+  },
+  {
+    style: "text-accent3 font-strong font-petit-formal",
+    word: "hero.word.cloud",
   },
 ];
 
 export const FOOTER_LINKS = [
+  {
+    color: "#7db643",
+    href: "https://neovim.io/",
+    icon: "devicon-neovim-plain colored",
+    word: "NeoVim",
+  },
   {
     color: "#ff5e00",
     href: "https://astro.build/",

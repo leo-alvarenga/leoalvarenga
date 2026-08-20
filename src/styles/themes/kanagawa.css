@@ -1,0 +1,18 @@
+.theme-kanagawa {
+  --color-bg1: #1f1f28;
+  --color-bg2: #16161d;
+  --color-bg3: #2a2a37;
+
+  --color-accent: #957fb8;
+  --color-accent1: #957fb8;
+  --color-accent2: #ffa066;
+  --color-accent3: #7e9cd8;
+  --color-accent4: #c34043;
+
+  --color-error: #c34043;
+  --color-success: #76946a;
+  --color-warning: #c0a36e;
+
+  --color-text: #dcd7ba;
+  --color-subtext-1: #c8c093;
+}

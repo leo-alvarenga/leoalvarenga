@@ -2,7 +2,6 @@
 import Navbar from "../components/Navbar/Navbar.astro";
 import Layout from "./Layout.astro";
 import { pageTitleToId, type OpenGraphOptions } from "../utils";
-import LanguageSelector from "../components/LanguageSelector.astro";
 import Footer from "../components/Footer.astro";
 
 interface Props {
@@ -43,7 +42,6 @@ const pageId = pageTitleToId(pageTitle, "content");
     <slot />
   </main>
 
-  <LanguageSelector />
 
   {!disableFooter && <Footer />}
   {!preventRefBehavior && <script is:inline>setCurrentRef();</script>}

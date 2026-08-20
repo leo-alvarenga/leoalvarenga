@@ -504,4 +504,10 @@ const { t } = useTranslation({ language });
       transform: translateY(-2000px);
     }
   }
+
+  @media (prefers-reduced-motion: reduce) {
+    #stars {
+      animation: none;
+    }
+  }
 </style>

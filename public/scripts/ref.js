@@ -6,9 +6,6 @@ function setCurrentRef() {
   const ref = location.pathname;
   if (ref === getCurrentRef()) return;
 
-  console.log(
-    `[PAGE]: Setting page ref; Before: "${getCurrentRef()}" | After: "${ref}"`,
-  );
 
   window.currentRef = ref;
 }
