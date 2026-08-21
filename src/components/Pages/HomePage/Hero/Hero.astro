@@ -2,13 +2,14 @@
 import { slide } from "astro:transitions";
 import { Icon } from "astro-icon/components";
 
-import { getLangFromUrl, useTranslation } from "../../../../config";
+import { getAltUrl, getLangFromUrl, useTranslation } from "../../../../config";
 import HeroTitle from "./HeroTitle.astro";
 import Section from "../../../Section.astro";
 import Button from "../../../Button.astro";
 
 const [language] = getLangFromUrl(Astro.url);
 const { t } = useTranslation({ language });
+const blogHref = getAltUrl(Astro.url, language, "/blog");
 ---
 
 <Section className="lg:w-[80%] relative z-0" id="hero">
@@ -31,6 +32,19 @@ const { t } = useTranslation({ language });
     <HeroTitle title="home.hero.text.lg" />
 
     <span class="mt-12 inline-flex gap-4 items-center justify-center">
+      <Button>
+        <a
+          class={`
+            inline-default w-full h-full text-lg
+            px-4 py-2 cursor-pointer
+          `}
+          href={blogHref}
+        >
+          {t("home.hero.action.blog")}
+          <Icon name="fa6-solid:newspaper" />
+        </a>
+      </Button>
+
       <Button>
         <button
           class={`

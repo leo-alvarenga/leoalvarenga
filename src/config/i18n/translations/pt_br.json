@@ -30,6 +30,7 @@
   "home.hero.text.lg": "Construo e arquiteto sistemas complexos, do meu terminal à infraestrutura em nuvem",
   "home.hero.action.more": "Saiba mais",
   "home.hero.action.contact": "Me contate",
+  "home.hero.action.blog": "Blog",
   "hero.word.complex": "complexos",
   "hero.word.data-heavy": "infraestrutura",
   "hero.word.terminal": "terminal",
@@ -59,5 +60,6 @@
   "tbd.description": "Esta página ainda não está pronta — mas a contagem regressiva já começou. Volte em breve para descobrir o que está lá fora!",
   "tbd.redirect": "Voltar para o Controle da Missão",
 
-  "blog.title": "Blog"
+  "blog.title": "Blog",
+  "blog.back": "Voltar ao blog"
 }

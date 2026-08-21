@@ -30,6 +30,7 @@
   "home.hero.text.lg": "I build and scale complex, data-heavy applications from the terminal to the cloud",
   "home.hero.action.more": "See more",
   "home.hero.action.contact": "Contact me",
+  "home.hero.action.blog": "Blog",
   "hero.word.complex": "complex",
   "hero.word.data-heavy": "data-heavy",
   "hero.word.terminal": "terminal",
@@ -59,5 +60,6 @@
   "tbd.description": "This page isn't quite ready yet — but the countdown has begun. Come back soon to see what’s out there!",
   "tbd.redirect": "Return to Mission Control",
 
-  "blog.title": "Blog"
+  "blog.title": "Blog",
+  "blog.back": "Back to blog"
 }
