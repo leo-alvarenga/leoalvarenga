@@ -8,7 +8,7 @@ interface Props {
 }
 
 const { className, id, wide } = Astro.props;
-const widthClass = wide ? "md:w-[95%] lg:w-[85%]" : "md:w-[90%] lg:w-[60%]";
+const widthClass = wide ? "w-full md:w-[95%] lg:w-[85%]" : "w-full md:w-[90%] lg:w-[60%]";
 ---
 
 <section

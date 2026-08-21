@@ -48,21 +48,34 @@ const cover = blogCover(post, slug);
       class="w-full h-auto rounded-lg"
     />
 
-    <header class="flex flex-col gap-2">
+    <header class="flex flex-col gap-2 min-w-0">
       <span class="text-sm text-subtext-1">
         {formatDate({ start: post.data.date.toISOString() })}
       </span>
-      <h1 class="text-3xl md:text-4xl font-bold">{post.data.title}</h1>
+      <h1 class="text-3xl md:text-4xl font-bold break-words">{post.data.title}</h1>
       <p class="text-subtext-1 text-lg">{post.data.description}</p>
     </header>
 
-    <div class="blog-prose">
+    <div class="blog-prose min-w-0">
       <Content />
     </div>
   </article>
 </Section>
 
 <style>
+  .blog-prose {
+    min-width: 0;
+    overflow-wrap: break-word;
+  }
+  .blog-prose :global(img) {
+    max-width: 100%;
+    height: auto;
+  }
+  .blog-prose :global(table) {
+    display: block;
+    max-width: 100%;
+    overflow-x: auto;
+  }
   .blog-prose :global(h1),
   .blog-prose :global(h2),
   .blog-prose :global(h3) {
@@ -105,7 +118,8 @@ const cover = blogCover(post, slug);
     background: var(--color-bg3);
     padding: 1rem;
     border-radius: 0.5rem;
-    overflow-x: auto;
+    overflow: auto;
+    max-height: 24rem;
     margin: 1rem 0;
   }
   .blog-prose :global(pre code) {

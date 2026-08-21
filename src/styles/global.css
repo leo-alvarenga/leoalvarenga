@@ -63,6 +63,11 @@
   scroll-behavior: smooth;
 }
 
+html,
+body {
+  overflow-x: clip;
+}
+
 .inline-default {
   @apply flex gap-2 items-center;
 }
