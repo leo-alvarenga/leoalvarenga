@@ -19,7 +19,7 @@ const { company, description, icon, position, stack } = xp;
 const { location, name, page } = company;
 
 const descriptionText = translatableTextToString(description, language);
-const longDescription = descriptionText.length > 200;
+const longDescription = descriptionText.length > 120;
 ---
 
 <div
@@ -40,11 +40,11 @@ const longDescription = descriptionText.length > 200;
 
   <div
     class={`
-        flex flex-col w-full
-        gap-6 items-start
-        bg-bg3 p-4
-        rounded-lg
-      `}
+      flex flex-col w-full
+      gap-6 items-start
+      bg-bg3 p-4
+      rounded-lg
+    `}
   >
     <hgroup class="flex flex-col gap-2 w-full items-start">
       <div
@@ -142,7 +142,7 @@ const longDescription = descriptionText.length > 200;
   .xp-desc {
     display: -webkit-box;
     -webkit-box-orient: vertical;
-    -webkit-line-clamp: 3;
+    -webkit-line-clamp: 2;
     overflow: hidden;
   }
 

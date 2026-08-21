@@ -73,21 +73,6 @@ export const PROJECTS: Project[] = [
   {
     description: {
       [Language.english]:
-        "My config files for a keyboard-focused, terminal-based dev workflow",
-      [Language.portugues]:
-        "Meus arquivos de configuração para um Workflow personalizado baseado no terminal e com foco na navegação via teclado",
-    },
-    icon: "gear",
-    name: "dotfiles",
-    preview: "",
-    repo: "https://github.com/leo-alvarenga/dotfiles",
-    stack: [TECH_MAP.lua, TECH_MAP.nix, TECH_MAP.bash],
-    status: ProjectStatus.active,
-    tags: [ProjectTag.linux, ProjectTag.ai, ProjectTag.command],
-  },
-  {
-    description: {
-      [Language.english]:
         "A powerful, lightweight and reliable CLI based to-do tracker capable of serving a web front-end locally",
       [Language.portugues]:
         "Um app poderoso, leve e confiável baseado em linha de comando para controle de tarefas capaz de servir um front-end web localmente",

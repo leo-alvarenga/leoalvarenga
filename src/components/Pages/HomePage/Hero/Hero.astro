@@ -43,10 +43,11 @@ const longestRole = roles.reduce((a, b) => (a.length >= b.length ? a : b));
         class="relative inline-block text-lg font-semibold text-accent1 lg:text-xl"
       >
         <span class="invisible" aria-hidden="true">{longestRole}</span>
+
         {roles.map((role, i) => (
           <span
             aria-hidden={i === 0 ? "false" : "true"}
-            class={`role-phrase absolute inset-0 transition-opacity duration-300 text-left ${i === 0 ? "opacity-100" : "opacity-0"}`}
+            class={`role-phrase absolute inset-0 transition-opacity duration-700 md:text-left ${i === 0 ? "opacity-100" : "opacity-0"}`}
           >
             {role}
           </span>
@@ -56,37 +57,39 @@ const longestRole = roles.reduce((a, b) => (a.length >= b.length ? a : b));
 
     <HeroTitle title="home.hero.text.lg" />
 
-    <span class="mt-12 inline-flex gap-4 items-center justify-center">
-      <Button>
-        <a
-          class={`
-            inline-default w-full h-full text-lg
-            px-4 py-2 cursor-pointer
-          `}
-          href={blogHref}
-        >
-          {t("home.hero.action.blog")}
-          <Icon name="fa6-solid:newspaper" />
-        </a>
-      </Button>
+    <span class="mt-12 flex flex-col gap-4 items-center justify-center">
+      <span class="inline-flex gap-4 items-center justify-center">
+        <Button>
+          <button
+            class={`
+              w-full text-lg
+              px-4 py-2 cursor-pointer
+            `}
+            onclick="scrollToContact()"
+          >
+            {t("home.hero.action.contact")}
+          </button>
+        </Button>
 
-      <Button>
-        <button
-          class={`
-            w-full h-full text-lg
-            px-4 py-2 cursor-pointer
-          `}
-          onclick="scrollToContact()"
-        >
-          {t("home.hero.action.contact")}
-        </button>
-      </Button>
+        <Button>
+          <a
+            class={`
+              inline-default h-full text-lg
+              px-4 py-2 cursor-pointer text-center
+            `}
+            href={blogHref}
+          >
+            {t("home.hero.action.blog")}
+            <Icon name="fa6-solid:newspaper" />
+          </a>
+        </Button>
+      </span>
 
-      <Button>
+      <Button className="w-full text-center">
         <button
           class={`
             inline-default
-            w-full h-full text-lg
+            h-full text-lg
             px-4 py-2 cursor-pointer
           `}
           onclick="scrollToXp()"
