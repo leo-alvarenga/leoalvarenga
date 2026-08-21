@@ -27,6 +27,10 @@
   "home.titlecard.email.action.success": "Endereço de email copiado para a área de transferência!",
 
   "home.hero.text.sm": "Olá, eu sou Leo Alvarenga!",
+  "home.hero.role.software": "Sou um Engenheiro de Software",
+  "home.hero.role.developer": "Sou um Desenvolvedor",
+  "home.hero.role.devops": "Sou um Engenheiro DevOps",
+  "home.hero.role.cloud": "Sou um Engenheiro Cloud",
   "home.hero.text.lg": "Construo e arquiteto sistemas complexos, do meu terminal à infraestrutura em nuvem",
   "home.hero.action.more": "Saiba mais",
   "home.hero.action.contact": "Me contate",

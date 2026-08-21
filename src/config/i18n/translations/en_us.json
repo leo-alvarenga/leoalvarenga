@@ -27,6 +27,10 @@
   "home.titlecard.email.action.success": "Email address copied to the clipboard!",
 
   "home.hero.text.sm": "Hey, I'm Leo Alvarenga!",
+  "home.hero.role.software": "I am a Software Engineer",
+  "home.hero.role.developer": "I am a Developer",
+  "home.hero.role.devops": "I am a DevOps Engineer",
+  "home.hero.role.cloud": "I am a Cloud Engineer",
   "home.hero.text.lg": "I build and scale complex, data-heavy applications from the terminal to the cloud",
   "home.hero.action.more": "See more",
   "home.hero.action.contact": "Contact me",

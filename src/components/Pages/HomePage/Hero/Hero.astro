@@ -10,6 +10,13 @@ import Button from "../../../Button.astro";
 const [language] = getLangFromUrl(Astro.url);
 const { t } = useTranslation({ language });
 const blogHref = getAltUrl(Astro.url, language, "/blog");
+const roles = [
+  t("home.hero.role.software"),
+  t("home.hero.role.devops"),
+  t("home.hero.role.developer"),
+  t("home.hero.role.cloud"),
+];
+const longestRole = roles.reduce((a, b) => (a.length >= b.length ? a : b));
 ---
 
 <Section className="lg:w-[80%] relative z-0" id="hero">
@@ -25,9 +32,27 @@ const blogHref = getAltUrl(Astro.url, language, "/blog");
     `}
     transition:animate={slide({ duration: "0.4s" })}
   >
-    <p class="mb-8 text-lg text-subtext-0 lg:text-xl sm:px-16 xl:px-48">
-      {t("home.hero.text.sm")}
-    </p>
+    <div class="mb-8 flex flex-wrap items-baseline justify-center gap-x-2">
+      <p class="text-lg text-subtext-0 lg:text-xl">
+        {t("home.hero.text.sm")}
+      </p>
+
+      <span
+        id="hero-role"
+        aria-live="polite"
+        class="relative inline-block text-lg font-semibold text-accent1 lg:text-xl"
+      >
+        <span class="invisible" aria-hidden="true">{longestRole}</span>
+        {roles.map((role, i) => (
+          <span
+            aria-hidden={i === 0 ? "false" : "true"}
+            class={`role-phrase absolute inset-0 transition-opacity duration-300 text-left ${i === 0 ? "opacity-100" : "opacity-0"}`}
+          >
+            {role}
+          </span>
+        ))}
+      </span>
+    </div>
 
     <HeroTitle title="home.hero.text.lg" />
 
@@ -87,6 +112,35 @@ const blogHref = getAltUrl(Astro.url, language, "/blog");
   function scrollToContact() {
     document.getElementById("contact")?.scrollIntoView();
   }
+</script>
+
+<script>
+  const DURATION = 4000; // ms between phrases
+  let intervalId;
+
+  function initRole() {
+    const phrases = Array.from(document.querySelectorAll("#hero-role .role-phrase"));
+    if (!phrases.length) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    if (intervalId) clearInterval(intervalId);
+
+    let i = 0;
+    intervalId = setInterval(() => {
+      const current = phrases[i];
+      i = (i + 1) % phrases.length;
+      const next = phrases[i];
+
+      current.classList.remove("opacity-100");
+      current.classList.add("opacity-0");
+      current.setAttribute("aria-hidden", "true");
+
+      next.classList.remove("opacity-0");
+      next.classList.add("opacity-100");
+      next.setAttribute("aria-hidden", "false");
+    }, DURATION);
+  }
+
+  document.addEventListener("astro:page-load", initRole);
 </script>
 
 <style is:inline>
