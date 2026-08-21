@@ -1,14 +1,18 @@
 ---
 import { getCollection, type CollectionEntry } from "astro:content";
+import { Language } from "../../config";
+import { blogCover, postLanguage, postSlug } from "../../utils";
 import BlogPost from "../../components/Pages/Blog/BlogPost.astro";
 import BasicLayout from "../../layouts/BasicLayout.astro";
 
 export async function getStaticPaths() {
   const posts = await getCollection("blog");
-  return posts.map((post) => ({
-    params: { slug: post.id },
-    props: { post },
-  }));
+  return posts
+    .filter((post) => postLanguage(post.id) === Language.english)
+    .map((post) => ({
+      params: { slug: postSlug(post.id) },
+      props: { post },
+    }));
 }
 
 interface Props {
@@ -16,8 +20,22 @@ interface Props {
 }
 
 const { post } = Astro.props;
+
+const slug = postSlug(post.id);
+const ogImage = {
+  src: blogCover(post, slug, { w: 1200, h: 630 }),
+  alt: post.data.title,
+  ...(post.data.cover ? {} : { width: 1200, height: 630 }),
+};
 ---
 
-<BasicLayout pageTitle={post.data.title}>
+<BasicLayout
+  pageTitle={post.data.title}
+  openGraph={{
+    description: post.data.description,
+    pathname: `/blog/${slug}`,
+    image: { default: ogImage },
+  }}
+>
   <BlogPost post={post} />
 </BasicLayout>

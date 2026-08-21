@@ -1,7 +1,7 @@
 ---
-import { render, type CollectionEntry } from "astro:content";
+import { getCollection, render, type CollectionEntry } from "astro:content";
 import { getLangFromUrl, Language, useTranslation } from "../../../config";
-import { formatDate } from "../../../utils";
+import { blogCover, formatDate, postLanguage, postSlug } from "../../../utils";
 import Section from "../../Section.astro";
 
 interface Props {
@@ -14,14 +14,40 @@ const { t } = useTranslation({ language });
 const { Content } = await render(post);
 
 const backHref = language === Language.portugues ? "/pt-br/blog" : "/blog";
+
+const slug = postSlug(post.id);
+const otherLang = language === Language.portugues ? Language.english : Language.portugues;
+const posts = await getCollection("blog");
+const hasTranslation = posts.some(
+  (p) => postSlug(p.id) === slug && postLanguage(p.id) === otherLang,
+);
+const altHref = otherLang === Language.english ? `/blog/${slug}` : `/pt-br/blog/${slug}`;
+
+const cover = blogCover(post, slug);
 ---
 
 <Section className="flex flex-col gap-8 pt-12">
-  <a href={backHref} class="text-sm text-subtext-1 hover:text-accent transition-colors">
-    ← {t("blog.back")}
-  </a>
+  <div class="flex items-center justify-between">
+    <a href={backHref} class="text-sm text-subtext-1 hover:text-accent transition-colors">
+      ← {t("blog.back")}
+    </a>
+    {
+      hasTranslation && (
+        <a href={altHref} class="text-sm text-accent hover:opacity-70 transition-opacity">
+          {t("blog.readIn")}
+        </a>
+      )
+    }
+  </div>
 
   <article class="flex flex-col gap-6">
+    <img
+      src={cover}
+      alt={post.data.title}
+      loading="eager"
+      class="w-full h-auto rounded-lg"
+    />
+
     <header class="flex flex-col gap-2">
       <span class="text-sm text-subtext-1">
         {formatDate({ start: post.data.date.toISOString() })}

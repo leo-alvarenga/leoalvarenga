@@ -31,6 +31,23 @@ export const LANGUAGE_HINTS = {
   [Language.portugues]: "Trocar para português",
 };
 
+// Convention: `<slug>-pt-br.md` marks a pt-BR translation; bare `<slug>.md` is English.
+export function postLanguage(id: string): Language {
+  return id.endsWith("-pt-br") ? Language.portugues : Language.english;
+}
+
+export function postSlug(id: string): string {
+  return id.endsWith("-pt-br") ? id.slice(0, -"-pt-br".length) : id;
+}
+
+export function blogCover(
+  post: { data: { cover?: string } },
+  slug: string,
+  size: { w: number; h: number } = { w: 1200, h: 800 },
+): string {
+  return post.data.cover ?? `https://picsum.photos/seed/${slug}/${size.w}/${size.h}`;
+}
+
 export const COMPANY_LOGOS = {
   vetta,
   nupessc,
