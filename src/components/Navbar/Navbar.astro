@@ -73,11 +73,11 @@ const getMenuItemClass = (baseHref: string) => {
 
   <div class="ml-auto md:ml-0 flex items-center gap-2">
     <button
-      id="theme-toggle"
       type="button"
-      class="flex items-center gap-2 px-3 py-2 rounded-lg bg-bg3 text-accent hover:opacity-70 transition-all duration-250"
+      id="theme-toggle"
       title="Change theme"
       aria-label="Change theme"
+      class="flex items-center gap-2 px-3 py-2 rounded-lg bg-bg3 text-accent hover:opacity-70 transition-all duration-250 cursor-pointer"
     >
       <Icon name="fa6-solid:palette" />
       <span id="theme-label" class="text-sm hidden sm:inline">Catppuccin Mocha</span>
@@ -85,13 +85,13 @@ const getMenuItemClass = (baseHref: string) => {
 
     <div class="relative">
       <button
-        id="lang-toggle"
         type="button"
-        class="flex items-center gap-2 px-3 py-2 rounded-lg bg-bg3 text-accent hover:opacity-70 transition-all duration-250"
-        aria-haspopup="listbox"
+        id="lang-toggle"
         aria-expanded="false"
+        aria-haspopup="listbox"
         aria-controls="lang-dropdown"
         title={LANGUAGE_HINTS[language]}
+        class="flex items-center gap-2 px-3 py-2 rounded-lg bg-bg3 text-accent hover:opacity-70 transition-all duration-250 cursor-pointer"
       >
         <Icon name="fa6-solid:globe" />
         <span class="text-sm hidden sm:inline">{LANGUAGE_LABELS[language]}</span>
@@ -109,8 +109,8 @@ const getMenuItemClass = (baseHref: string) => {
             <li role="option" aria-selected={lang === language}>
               <button
                 type="button"
-                class={`w-full text-left px-2 py-1 rounded-md hover:opacity-70 ${lang === language ? "underline" : ""}`}
                 data-lang={lang}
+                class={`w-full text-left px-2 py-1 rounded-md hover:opacity-70  cursor-pointer ${lang === language ? "underline" : ""}`}
               >
                 {label}
               </button>
@@ -131,11 +131,9 @@ const getMenuItemClass = (baseHref: string) => {
     { id: "latte", label: "Catppuccin Latte" },
   ];
 
-  const themeBtn = document.getElementById("theme-toggle");
-  const themeLabel = document.getElementById("theme-label");
-
   function currentTheme() {
     const saved = localStorage.getItem("theme");
+
     return saved && THEMES.some((t) => t.id === saved) ? saved : THEMES[0].id;
   }
 
@@ -143,45 +141,60 @@ const getMenuItemClass = (baseHref: string) => {
     THEMES.forEach((t) =>
       document.body.classList.toggle("theme-" + t.id, t.id === id)
     );
+
     localStorage.setItem("theme", id);
+    const themeLabel = document.getElementById("theme-label");
+
     if (themeLabel) themeLabel.textContent = THEMES.find((t) => t.id === id).label;
   }
 
-  applyTheme(currentTheme()); // re-apply on view-transition navigation
-  themeBtn?.addEventListener("click", () => {
-    const cur = currentTheme();
-    const i = THEMES.findIndex((t) => t.id === cur);
-    applyTheme(THEMES[(i + 1) % THEMES.length].id);
-  });
-
   // ---- Language dropdown ----
-  const langBtn = document.getElementById("lang-toggle");
-  const dropdown = document.getElementById("lang-dropdown");
-
   function setLangOpen(open) {
-    dropdown.classList.toggle("hidden", !open);
-    langBtn.setAttribute("aria-expanded", String(open));
+    const langBtn = document.getElementById("lang-toggle");
+    const dropdown = document.getElementById("lang-dropdown");
+
+    dropdown?.classList.toggle("hidden", !open);
+    langBtn?.setAttribute("aria-expanded", String(open));
   }
+
   function closeLang() {
     setLangOpen(false);
   }
 
-  langBtn?.addEventListener("click", (e) => {
-    e.stopPropagation();
-    setLangOpen(langBtn.getAttribute("aria-expanded") !== "true");
-  });
+  function init() {
+    applyTheme(currentTheme()); // re-apply on view-transition navigation
 
-  dropdown?.querySelectorAll("[data-lang]").forEach((opt) => {
-    opt.addEventListener("click", (e) => {
-      e.stopPropagation();
-      const lang = opt.dataset.lang;
-      closeLang();
-      document.dispatchEvent(new CustomEvent("lang_change", { detail: lang }));
+    document.getElementById("theme-toggle")?.addEventListener("click", () => {
+      const cur = currentTheme();
+      const i = THEMES.findIndex((t) => t.id === cur);
+
+      applyTheme(THEMES[(i + 1) % THEMES.length].id);
     });
-  });
+
+    const langBtn = document.getElementById("lang-toggle");
+    const dropdown = document.getElementById("lang-dropdown");
+
+    langBtn?.addEventListener("click", (e) => {
+      e.stopPropagation();
+      setLangOpen(langBtn.getAttribute("aria-expanded") !== "true");
+    });
+
+    dropdown?.querySelectorAll("[data-lang]").forEach((opt) => {
+      opt.addEventListener("click", (e) => {
+        e.stopPropagation();
+        const lang = opt.dataset.lang;
+
+        closeLang();
+        document.dispatchEvent(new CustomEvent("lang_change", { detail: lang }));
+      });
+    });
+  }
 
   document.addEventListener("click", closeLang);
+
   document.addEventListener("keydown", (e) => {
     if (e.key === "Escape") closeLang();
   });
+
+  document.addEventListener("astro:page-load", init);
 </script>
