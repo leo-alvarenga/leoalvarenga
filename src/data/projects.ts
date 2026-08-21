@@ -88,36 +88,6 @@ export const PROJECTS: Project[] = [
   {
     description: {
       [Language.english]:
-        "Latest version of my personal web page, made using Astro.js",
-      [Language.portugues]:
-        "Versão mais atual da minha página web pessoal, feita com Astro.js",
-    },
-    icon: "",
-    name: "leoalvarenga.dev",
-    preview: "#leoalvarenga.dev",
-    repo: "https://github.com/leo-alvarenga/leoalvarenga.dev",
-    stack: [TECH_MAP.astro, TECH_MAP.tailwindcss, TECH_MAP.ts, TECH_MAP.js],
-    status: ProjectStatus.active,
-    tags: [ProjectTag.frontend],
-  },
-  {
-    description: {
-      [Language.english]:
-        "A simple CR & CRA (brazilian GPA counterpart) calculator",
-      [Language.portugues]:
-        "Uma Calculadora de CR (Coeficiente de Rendimento) e CRA (Coeficiente de Rendimento Acumulado)",
-    },
-    icon: "calculator",
-    name: "Calculadora CR",
-    preview: "https://calculadora-cr.web.app/",
-    repo: "https://github.com/leo-alvarenga/calculadora-cr",
-    stack: [TECH_MAP.react, TECH_MAP.js, TECH_MAP.css],
-    status: ProjectStatus.archived,
-    tags: [ProjectTag.frontend],
-  },
-  {
-    description: {
-      [Language.english]:
         "A powerful, lightweight and reliable CLI based to-do tracker capable of serving a web front-end locally",
       [Language.portugues]:
         "Um app poderoso, leve e confiável baseado em linha de comando para controle de tarefas capaz de servir um front-end web localmente",
@@ -129,21 +99,6 @@ export const PROJECTS: Project[] = [
     stack: [TECH_MAP.html, TECH_MAP.css, TECH_MAP.js, TECH_MAP.golang],
     status: ProjectStatus.archived,
     tags: [ProjectTag.frontend, ProjectTag.backend],
-  },
-  {
-    description: {
-      [Language.english]:
-        "A small and dead simple web app template based on an API Rest built using Bun and ElysiaJS that serves static pages with internalization without overhead.",
-      [Language.portugues]:
-        "Um pequeno e simples template para webapps baseado em uma API Rest, construído com Bun e ElysiaJS, que serve páginas estáticas com internacionalização sem complicações desnecessárias",
-    },
-    icon: "server",
-    name: "bej",
-    preview: "",
-    repo: "https://github.com/leo-alvarenga/bej",
-    stack: [TECH_MAP.bun, TECH_MAP.ts],
-    status: ProjectStatus.archived,
-    tags: [ProjectTag.backend, ProjectTag.frontend],
   },
 ];
 

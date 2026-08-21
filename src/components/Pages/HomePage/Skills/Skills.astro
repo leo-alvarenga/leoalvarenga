@@ -1,88 +1,13 @@
 ---
-import { Icon } from "astro-icon/components";
-
 import Section from "../../../Section.astro";
-import Button from "../../../Button.astro";
+import SectionTitle from "../../../SectionTitle.astro";
 import SkillGrid from "./SkillGrid.astro";
-import SkillHeader from "./SkillHeader.astro";
-import { getLangFromUrl, useTranslation } from "../../../../config";
-
-const [language] = getLangFromUrl(Astro.url);
-const { t } = useTranslation({ language });
 ---
 
 <span id="skills"></span>
 
 <Section className="flex flex-col gap-8 pt-12">
-  <SkillHeader />
+  <SectionTitle title="home.skills.title" />
 
   <SkillGrid />
-
-  <div class="flex flex-col items-center">
-    <Button>
-      <button
-        class="inline-default w-full h-full text-sm px-4 py-2 cursor-pointer"
-        id="skill-toggle"
-      >
-        <span class="flex gap-2 items-center" data-skilllabel="more">
-          {t("home.skills.action.more")}
-          <span data-skillcount></span>
-
-          <Icon name="fa6-solid:angles-down" />
-        </span>
-
-        <span class="flex gap-2 items-center hidden" data-skilllabel="less">
-          {t("home.skills.action.less")}
-
-          <Icon name="fa6-solid:angles-up" />
-        </span>
-      </button>
-    </Button>
-  </div>
 </Section>
-
-<script lang="js">
-  const SHOWN = 12;
-  let items = [];
-  let displayAll = false;
-
-  function randInt(max) {
-    return Math.floor(Math.random() * max);
-  }
-
-  function applyLimit() {
-    if (!items.length) return;
-    const ordered = [...items].sort(
-      (a, b) => (parseFloat(a.style.order) || 0) - (parseFloat(b.style.order) || 0),
-    );
-    ordered.forEach((item, i) =>
-      item.classList.toggle("hidden", !displayAll && i >= SHOWN),
-    );
-    const hidden = Math.max(0, items.length - SHOWN);
-    const count = document.querySelector("[data-skillcount]");
-    if (count) count.textContent = `(+${hidden})`;
-    document
-      .querySelector("[data-skilllabel='more']")
-      ?.classList.toggle("hidden", displayAll);
-    document
-      .querySelector("[data-skilllabel='less']")
-      ?.classList.toggle("hidden", !displayAll);
-  }
-
-  function shuffle() {
-    try {
-      items = [...document.getElementById("skill-list").querySelectorAll("li")];
-      for (const item of items) item.style.order = randInt(items.length);
-      applyLimit();
-    } catch (error) {
-      console.warn("Could not shuffle skills...", error);
-    }
-  }
-
-  document.getElementById("skill-toggle")?.addEventListener("click", () => {
-    displayAll = !displayAll;
-    applyLimit();
-  });
-
-  shuffle();
-</script>

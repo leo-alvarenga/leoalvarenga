@@ -1,4 +1,5 @@
 ---
+import { Image } from "astro:assets";
 import { Icon } from "astro-icon/components";
 
 import { getLangFromUrl, useTranslation } from "../../../../config";
@@ -16,6 +17,20 @@ const { t } = useTranslation({ language });
   id="contact"
 >
   <h1 class="font-bold text-4xl">{t("home.contact.title")}</h1>
+
+  <div class="rounded-full border-2 border-dashed border-success p-1 relative">
+    <div class="overflow-hidden rounded-full w-52 h-52">
+      <img
+        src="/pfp_sqr.jpeg"
+        alt="Not found"
+        loading="eager"
+        data-isimage="true"
+      />
+    </div>
+
+    <span class="overflow-hidden w-8 h-8 rounded-full bg-success text-bg1 text-2xl flex justify-center items-center p-1 absolute bottom-3 right-3">
+    </span>
+  </div>
 
   {
     IS_AVAILABLE && (
