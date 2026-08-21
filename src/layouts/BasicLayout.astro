@@ -44,5 +44,11 @@ const pageId = pageTitleToId(pageTitle, "content");
 
 
   {!disableFooter && <Footer />}
-  {!preventRefBehavior && <script is:inline>setCurrentRef();</script>}
+  {!preventRefBehavior && <script is:inline>
+    try {
+      setCurrentRef && setCurrentRef();
+    } catch {
+      // pass
+    }
+  </script>}
 </Layout>

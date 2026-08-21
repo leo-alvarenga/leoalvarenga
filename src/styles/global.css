@@ -59,6 +59,7 @@
 }
 
 * {
+  font-display: swap;
   scroll-behavior: smooth;
 }
 
