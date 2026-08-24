@@ -71,5 +71,6 @@
 
   "blog.title": "Blog",
   "blog.back": "Back to blog",
-  "blog.readIn": "Read in Português 🇧🇷"
+  "blog.readIn": "Read in Português 🇧🇷",
+  "blog.readTime": "{{time}} minute read"
 }

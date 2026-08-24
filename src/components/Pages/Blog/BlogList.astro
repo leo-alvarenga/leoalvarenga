@@ -27,11 +27,12 @@ const hrefFor = (slug: string) =>
         class="group flex flex-col overflow-hidden rounded-lg border border-bg2 bg-bg3 hover:bg-bg2 transition-colors duration-250"
       >
         <img
-          src={blogCover(featured, postSlug(featured.id))}
-          alt={featured.data.title}
           loading="eager"
+          alt={featured.data.title}
           class="w-full h-64 md:h-80 object-cover"
+          src={blogCover(featured, postSlug(featured.id))}
         />
+
         <div class="flex flex-col gap-2 p-6">
           <span class="text-sm text-subtext-1">
             {formatDate({ start: featured.data.date.toISOString() })}

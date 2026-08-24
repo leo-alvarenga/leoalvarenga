@@ -1,7 +1,7 @@
 ---
 title: "Hello, World"
 description: "Inauguration: what this blog is for and what to expect."
-date: 2026-08-21
+date: 2026-07-30
 tags: ["meta", "intro"]
 cover: "/covers/hello-world.jpg"
 ---

@@ -7,6 +7,7 @@ import BasicLayout from "../../layouts/BasicLayout.astro";
 
 export async function getStaticPaths() {
   const posts = await getCollection("blog");
+
   return posts
     .filter((post) => postLanguage(post.id) === Language.english)
     .map((post) => ({
@@ -22,11 +23,13 @@ interface Props {
 const { post } = Astro.props;
 
 const slug = postSlug(post.id);
+
 const ogImage = {
-  src: blogCover(post, slug, { w: 1200, h: 630 }),
   alt: post.data.title,
+  src: blogCover(post, slug, { w: 1200, h: 630 }),
   ...(post.data.cover ? {} : { width: 1200, height: 630 }),
 };
+
 ---
 
 <BasicLayout

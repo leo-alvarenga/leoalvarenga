@@ -1,7 +1,7 @@
 ---
 title: "Olá, Mundo"
 description: "Inauguração: o que este blog é e o que esperar."
-date: 2026-08-21
+date: 2026-07-30
 tags: ["meta", "intro"]
 cover: "/covers/hello-world.jpg"
 ---

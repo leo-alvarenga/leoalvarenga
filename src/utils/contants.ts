@@ -21,6 +21,9 @@ export const DEFAULT_DATE_FORMAT = "MMM, YYYY";
 export const HOST_NAME = "https://leoalvarenga.dev";
 export const EMAIL_FOR_CONTACT = "leonardo.a.alvarenga@gmail.com";
 
+export const DEFAULT_AUTHOR_NAME = "Leonardo A. Alvarenga";
+export const DEFAULT_AUTHOR_PICTURE_URL = "/pfp_sqr.jpeg";
+
 export const LANGUAGE_LABELS = {
   [Language.english]: "English 🇺🇸",
   [Language.portugues]: "Português 🇧🇷",
@@ -45,7 +48,18 @@ export function blogCover(
   slug: string,
   size: { w: number; h: number } = { w: 1200, h: 800 },
 ): string {
-  return post.data.cover ?? `https://picsum.photos/seed/${slug}/${size.w}/${size.h}`;
+  return (
+    post.data.cover ?? `https://picsum.photos/seed/${slug}/${size.w}/${size.h}`
+  );
+}
+
+export function blogAuthor(post: {
+  data: { author?: string; authorPicture?: string };
+}) {
+  return {
+    name: post.data?.author ?? DEFAULT_AUTHOR_NAME,
+    picture: post.data?.authorPicture ?? DEFAULT_AUTHOR_PICTURE_URL,
+  };
 }
 
 export const COMPANY_LOGOS = {
@@ -56,19 +70,18 @@ export const COMPANY_LOGOS = {
 
 export const STATUS_IMAGES = {
   ERROR: [errorTaken],
-  IN_PROGRESS: [inProgressAstronaut, inProgressMoon, inProgressRelaunch],
   NOT_FOUND: [notFoundGalaxy, notFoundVoid],
+  IN_PROGRESS: [inProgressAstronaut, inProgressMoon, inProgressRelaunch],
 };
 
 export const NAVBAR_LINKS = [
   {
-    label: "home.title",
     baseHref: "/",
+    label: "home.title",
   },
   {
-    label: "blog.title",
-    // baseHref: "https://shelldreams.dev/",
     baseHref: "/blog",
+    label: "blog.title",
   },
 ];
 

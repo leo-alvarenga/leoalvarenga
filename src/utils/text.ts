@@ -16,3 +16,8 @@ export function translatableTextToString(
 export function capitalize(str: string) {
   return String(str).charAt(0).toUpperCase() + String(str).slice(1);
 }
+
+export function readingTime(body: string) {
+  const words = body.trim().split(/\s+/).length;
+  return Math.max(1, Math.ceil(words / 200));
+}
