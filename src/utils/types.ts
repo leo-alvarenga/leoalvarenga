@@ -6,10 +6,10 @@ export type OpenGraphOptionsImage = {
 };
 
 export type OpenGraphOptions = {
-  author?: string;
-  description?: string;
   title?: string;
+  author?: string;
   pathname?: string;
+  description?: string;
   image?: {
     default?: OpenGraphOptionsImage;
     square?: OpenGraphOptionsImage;
