@@ -5,6 +5,7 @@ import { getLangFromUrl, useTranslation } from "../../../../config";
 import { EMAIL_FOR_CONTACT } from "../../../../utils";
 import Section from "../../../Section.astro";
 import Action from "../../../Action.astro";
+import CopyButton from "../../../CopyButton.astro";
 import { CONTACTS, IS_AVAILABLE } from "../../../../data";
 
 const [language] = getLangFromUrl(Astro.url);
@@ -53,7 +54,7 @@ const { t } = useTranslation({ language });
 
   <div class="flex flex-col items-center gap-4 w-full p-4 mt-12">
     <div class="flex items-center gap-4 w-full flex-wrap">
-      <button
+      <CopyButton
         class={`
             px-4 py-2 rounded-lg
             border border-success
@@ -65,19 +66,18 @@ const { t } = useTranslation({ language });
             overflow-hidden
           `}
         title={t("home.contact.email.tip")}
-        id="email-copy"
-        data-email={EMAIL_FOR_CONTACT}
-        data-success={t("home.contact.email.success")}
+        text={EMAIL_FOR_CONTACT}
+        success={t("home.contact.email.success")}
       >
         <span
+          data-copy-label
           class="text-subtext-0 group-hover:text-success overflow-ellipsis whitespace-nowrap overflow-hidden"
-          id="email-copy-text"
         >
           {EMAIL_FOR_CONTACT}
         </span>
 
         <Icon class="group-hover:text-success" name="fa6-solid:copy" />
-      </button>
+      </CopyButton>
 
       <Action className="text-xl">
         <a
@@ -108,21 +108,3 @@ const { t } = useTranslation({ language });
     </div>
   </div>
 </Section>
-
-<script lang="js">
-  const copyBtn = document.getElementById("email-copy");
-  const copyText = document.getElementById("email-copy-text");
-
-  if (copyBtn && copyText) {
-    const original = copyText.textContent;
-
-    copyBtn.addEventListener("click", async () => {
-      await navigator.clipboard.writeText(String(copyBtn.getAttribute("data-email")));
-
-      copyText.textContent = copyBtn.getAttribute("data-success");
-      setTimeout(() => {
-        copyText.textContent = original;
-      }, 1500);
-    });
-  }
-</script>

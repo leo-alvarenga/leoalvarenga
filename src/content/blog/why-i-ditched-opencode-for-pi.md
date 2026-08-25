@@ -20,7 +20,7 @@ When I migrated to Pi, my first instinct was to recreate the familiar setup I wa
 
 The extension let me swap profile states on the fly. I even wired up Pi’s `before_agent_start` event hook to dynamically inject tagged agent instructions directly into the system prompt prior to every turn:
 
-```Markdown
+```md
 <!-- AGENT_PROFILE_START -->
 
 ## Active Agent Profile: PLAN
@@ -45,7 +45,7 @@ I didn't actually need complex mode switchers or subagent orchestrators. I just 
 
 The fix wasn't heavy agent modes; it was a terse Rules of Engagement System Prompt Addendum (placed in the `~/.pi/agent/APPEND_SYSTEM.md` file):
 
-```Markdown
+```md
 ## Rules of Engagement
 
 These rules are always in effect and take precedence over any conflicting turn-level instruction.

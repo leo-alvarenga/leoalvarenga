@@ -24,11 +24,13 @@ const { t } = useTranslation({ language });
       {t("blog.hero.tagline")}
     </p>
 
-    <p class="text-subtext-1">
-      <span class="text-accent">{"> "}</span>
-      {t("blog.hero.stats.posts", { count })}
-      {" · "}
-      {t("blog.hero.stats.topics", { count: topics })}
+    <p class="text-subtext-1 inline-flex items-center">
+      <span class="text-accent mr-2.5">{"> "}</span>
+
+      <span>
+        {`${t("blog.hero.stats.posts", { count })} · ${t("blog.hero.stats.topics", { count: topics })}`}
+      </span>
+      
       <span class="ml-1 inline-block h-5 w-2 animate-blink bg-accent"></span>
     </p>
   </div>

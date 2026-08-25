@@ -3,6 +3,8 @@ import { getCollection, render, type CollectionEntry } from "astro:content";
 import { getLangFromUrl, Language, useTranslation } from "../../../config";
 import { blogAuthor, blogCover, formatDate, postLanguage, postSlug, readingTime } from "../../../utils";
 import Section from "../../Section.astro";
+import CopyButton from "../../CopyButton.astro";
+import { Icon } from "astro-icon/components";
 
 interface Props {
   post: CollectionEntry<"blog">;
@@ -26,23 +28,36 @@ const author = blogAuthor(post)
 const cover = blogCover(post, slug);
 const time = readingTime(post.body ?? "");
 const altHref = otherLang === Language.english ? `/blog/${slug}` : `/pt-br/blog/${slug}`;
+const actionClass = "inline-flex items-center gap-2 rounded-lg bg-bg3 px-3 py-1.5 text-sm transition-colors hover:bg-accent1 hover:text-bg3";
 ---
 
 <Section className="flex flex-col gap-8 pt-4">
-  <div class="flex items-center justify-between">
-    <a href={backHref} class="text-sm text-subtext-1 hover:text-accent transition-colors">
-      ← {t("blog.back")}
+  <div class="flex items-center gap-2 flex-wrap">
+    <a href={backHref} class={`${actionClass} text-subtext-1 mr-auto`}>
+      <Icon name="fa6-solid:arrow-left" />
+      {t("blog.back")}
     </a>
+
     {
       hasTranslation && (
-        <a href={altHref} class="text-sm text-accent hover:opacity-70 transition-opacity">
+        <a href={altHref} class={`${actionClass} text-accent`}>
+          <Icon name="fa6-solid:language" />
           {t("blog.readIn")}
         </a>
       )
     }
+
+    <CopyButton
+      success={t("blog.copyLink.success")}
+      successClass="text-success"
+      class={`${actionClass} text-subtext-1 cursor-pointer`}
+    >
+      <Icon name="fa6-solid:link" />
+      <span data-copy-label>{t("blog.copyLink")}</span>
+    </CopyButton>
   </div>
 
-  <article class="flex flex-col gap-6 select-text">
+  <article class="flex flex-col gap-4 select-text">
     <div class="overflow-hidden rounded-lg">
       <img
         src={cover}
@@ -52,7 +67,7 @@ const altHref = otherLang === Language.english ? `/blog/${slug}` : `/pt-br/blog/
       />
     </div>
 
-    <header class="text-subtext-1 flex flex-col gap-2 min-w-0">
+    <header class="text-subtext-1 flex flex-col gap-2 min-w-0 border-b border-b-subtext-1/20 pb-4">
       <span class="text-sm mb-2 inline-flex gap-2 items-center">
         <div class="overflow-hidden rounded-full w-10 h-10">
           <img
@@ -166,4 +181,70 @@ const altHref = otherLang === Language.english ? `/blog/${slug}` : `/pt-br/blog/
     color: var(--color-subtext-1);
     margin: 1rem 0;
   }
+  .blog-prose :global(.code-wrapper) {
+    margin: 1rem 0;
+    border-radius: 0.5rem;
+    overflow: hidden;
+  }
+  .blog-prose :global(.code-wrapper pre) {
+    margin: 0;
+    border-radius: 0;
+  }
+  .blog-prose :global(.code-header) {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.5rem 0.75rem;
+    font-family: var(--font-code);
+    font-size: 0.75rem;
+    color: var(--color-subtext-1);
+    background: var(--color-bg2);
+    border-bottom: 1px solid var(--color-bg3);
+  }
+  .blog-prose :global(.code-copy) {
+    background: transparent;
+    border: 1px solid var(--color-subtext-1);
+    border-radius: 0.25rem;
+    padding: 0.15rem 0.5rem;
+    font: inherit;
+    font-size: 0.7rem;
+    color: var(--color-subtext-1);
+    cursor: pointer;
+    transition: color 0.15s, border-color 0.15s;
+  }
+  .blog-prose :global(.code-copy:hover) {
+    color: var(--color-accent);
+    border-color: var(--color-accent);
+  }
 </style>
+
+<script>
+  function enhanceCodeBlocks() {
+    document.querySelectorAll(".blog-prose pre").forEach((pre) => {
+      if (pre.parentElement?.classList.contains("code-wrapper")) return;
+
+      const label = document.createElement("span");
+      label.textContent = pre.dataset.title || pre.dataset.language || "";
+
+      const button = document.createElement("button");
+      button.type = "button";
+      button.className = "code-copy";
+      button.textContent = "Copy";
+      button.dataset.copy = pre.querySelector("code")?.textContent ?? "";
+      button.dataset.success = "Copied!";
+
+      const header = document.createElement("div");
+      header.className = "code-header";
+      if (label.textContent) header.append(label);
+      header.append(button);
+
+      const wrapper = document.createElement("div");
+      wrapper.className = "code-wrapper";
+      pre.before(wrapper);
+      wrapper.append(header, pre);
+    });
+  }
+
+  enhanceCodeBlocks();
+  document.addEventListener("astro:page-load", enhanceCodeBlocks);
+</script>

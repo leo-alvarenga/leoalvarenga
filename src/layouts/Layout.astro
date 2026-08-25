@@ -34,7 +34,7 @@ const openGraphOptions: OpenGraphOptions = {
 };
 ---
 
-<html lang="en">
+<html lang="en" class="theme-catppuccin">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -58,10 +58,10 @@ const openGraphOptions: OpenGraphOptions = {
     <ClientRouter />
   </head>
 
-  <body class="theme-catppuccin bg-bg1 m-0 select-none text-text w-full">
+  <body class="bg-bg1 m-0 select-none text-text w-full">
     <script is:inline>
       if (localStorage.getItem("theme")) {
-        document.body.classList.add("theme-" + localStorage.getItem("theme"));
+        document.documentElement.classList.add("theme-" + localStorage.getItem("theme"));
       }
     </script>
     <slot />

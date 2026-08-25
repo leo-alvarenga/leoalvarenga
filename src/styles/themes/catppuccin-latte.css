@@ -15,4 +15,18 @@
 
   --color-text: #4c4f69;
   --color-subtext-1: #5c5f77;
+  --astro-code-foreground: var(--color-text);
+  --astro-code-background: var(--color-bg3);
+  --astro-code-token-constant: #fe640b;
+  --astro-code-token-string: #40a02b;
+  --astro-code-token-comment: #9ca0b0;
+  --astro-code-token-keyword: #8839ef;
+  --astro-code-token-parameter: #df8e1d;
+  --astro-code-token-function: #1e66f5;
+  --astro-code-token-string-expression: #179299;
+  --astro-code-token-punctuation: #5c5f77;
+  --astro-code-token-link: #1e66f5;
+  --astro-code-token-inserted: #40a02b;
+  --astro-code-token-deleted: #d20f39;
+  --astro-code-token-changed: #df8e1d;
 }

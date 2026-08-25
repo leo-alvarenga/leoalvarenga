@@ -20,4 +20,19 @@ export default defineConfig({
   },
 
   integrations: [icon()],
+
+  markdown: {
+    shikiConfig: {
+      theme: "css-variables",
+      transformers: [
+        {
+          name: "code-title",
+          pre(node) {
+            const title = /(?:^|\s)title="([^"]*)"/.exec(this.options.meta?.__raw ?? "");
+            if (title) node.properties.dataTitle = title[1];
+          },
+        },
+      ],
+    },
+  },
 });

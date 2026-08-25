@@ -139,7 +139,7 @@ const getMenuItemClass = (baseHref: string) => {
 
   function applyTheme(id) {
     THEMES.forEach((t) =>
-      document.body.classList.toggle("theme-" + t.id, t.id === id)
+      document.documentElement.classList.toggle("theme-" + t.id, t.id === id)
     );
 
     localStorage.setItem("theme", id);

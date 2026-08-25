@@ -20,8 +20,7 @@ Quando migrei para o Pi, meu primeiro instinto foi recriar a estrutura familiar 
 
 A extensão me permitia alternar estados de perfil rapidamente. Cheguei até a conectar o hook de evento `before_agent_start` do Pi para injetar dinamicamente instruções de agente etiquetadas diretamente no prompt do sistema antes de cada turno:
 
-```Markdown
-
+```md
 <!-- AGENT_PROFILE_START -->
 
 ## Perfil de Agente Ativo: PLAN
@@ -45,7 +44,7 @@ Eu não precisava de alternadores de modo complexos ou orquestradores de subagen
 
 A solução não era criar modos de agente pesados; era um adendo sucinto de Regras de Engajamento para o Prompt do Sistema (colocado no arquivo ~/.pi/agent/APPEND_SYSTEM.md):
 
-```Markdown
+```md
 ## Regras de Engajamento
 
 Estas regras estão sempre em vigor e têm prioridade sobre qualquer instrução conflitante no nível do turno.

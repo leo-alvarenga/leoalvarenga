@@ -75,5 +75,7 @@
   "blog.hero.stats.topics": "{{count}} tópicos",
   "blog.back": "Voltar ao blog",
   "blog.readIn": "Ler em inglês 🇺🇸",
-  "blog.readTime": "{{time}} minutos de leitura"
+  "blog.readTime": "{{time}} minutos de leitura",
+  "blog.copyLink": "Copiar link",
+  "blog.copyLink.success": "Link copiado!"
 }
