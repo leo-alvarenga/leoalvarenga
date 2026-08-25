@@ -58,9 +58,9 @@ export const PROJECTS: Project[] = [
   {
     description: {
       [Language.english]:
-        "Monorepo for my Pi (AI) Coding Agent packages; Includes Agent-mode switching, permission guards, Hash anchored operations, Agent task list tracking and more",
+        "Monorepo for my Pi (AI) Coding Agent packages; Includes parallel subagents, Agent-mode switching, permission guards, Hash anchored operations, Agent task list tracking and more",
       [Language.portugues]:
-        "Monorepo para meus pacotes do Pi (AI) Coding Agent; Inclui troca de modos do Agente, guardas de permissão, operações ancoradas em Hash, rastreamento da lista de tarefas do Agente e mais",
+        "Monorepo para meus pacotes do Pi (AI) Coding Agent; Inclui sub-agentes paralelos, troca de modos do Agente, guardas de permissão, operações ancoradas em Hash, rastreamento da lista de tarefas do Agente e mais",
     },
     icon: "robot",
     name: "pi-mono",
@@ -68,7 +68,7 @@ export const PROJECTS: Project[] = [
     repo: "https://github.com/leo-alvarenga/pi-mono",
     stack: [TECH_MAP.ts, TECH_MAP.nodejs],
     status: ProjectStatus.active,
-    tags: [ProjectTag.ai],
+    tags: [ProjectTag.ai, ProjectTag.command, ProjectTag.linux],
   },
   {
     description: {

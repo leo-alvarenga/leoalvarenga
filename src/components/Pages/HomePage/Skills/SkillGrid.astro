@@ -1,7 +1,6 @@
 ---
 import { SKILL_GROUPS, SKILLS } from "../../../../data";
 import { getLangFromUrl, useTranslation } from "../../../../config";
-import Terminal from "../../../Terminal.astro";
 
 const [language] = getLangFromUrl(Astro.url);
 const { t } = useTranslation({ language });
@@ -12,47 +11,50 @@ const groups = SKILL_GROUPS.map((category) => ({
 }));
 ---
 
-<Terminal title="~/skills.txt">
-  <div class="flex flex-col gap-8">
+<div class="flex w-full flex-col gap-12">
+  <div class="grid w-full grid-cols-1 gap-10 md:grid-cols-2">
     {
       groups.map(({ category, skills }) => (
-        <div class="flex flex-col gap-3">
-          <h3 class="font-code text-sm text-accent1">
-            {"// "}
-            {t(`home.skills.category.${category}`)}
+        <div class="flex flex-col gap-4">
+          <h3 class="font-code text-sm tracking-[0.2em] text-subtext-1">
+            {`// ${t(`home.skills.category.${category}`)}`}
           </h3>
 
           <ul class="flex flex-row flex-wrap gap-2 list-none">
-            {skills.map((skill) => (
-              <li
-                class={`
-                  inline-flex items-center gap-2
-                  rounded-full border px-2.5 py-1
-                  font-code text-sm text-text
-                  border-text/30 bg-accent1/10
-                `}
-              >
-                {skill.isSrc ? (
-                  <img
-                    src={skill.icon}
-                    alt=""
-                    class="h-4 w-4 md:h-5 md:w-5"
-                    loading="lazy"
-                  />
-                ) : (
-                  <i class={`${skill.icon} text-base md:text-lg`} />
-                )}
+            {
+              skills.map((skill) => (
+                <li
+                  class={`
+                    inline-flex items-center gap-2
+                    rounded-none border px-3 py-1.5
+                    font-code text-sm
+                    ${skill.primary ? "border-accent1/40 text-accent1" : "border-bg2 text-text"}
+                  `}
+                >
+                  {
+                    skill.isSrc ? (
+                      <img
+                        src={skill.icon}
+                        alt=""
+                        class="h-4 w-4 md:h-5 md:w-5"
+                        loading="lazy"
+                      />
+                    ) : (
+                      <i class={`${skill.icon} text-base md:text-lg`} />
+                    )
+                  }
 
-                <span>{skill.label}</span>
-              </li>
-            ))}
+                  <span>{skill.label}</span>
+                </li>
+              ))
+            }
           </ul>
         </div>
       ))
     }
-
-    <h3 class="font-code text-sm text-accent1">
-      {`// ${t("commons.andManyMore")}...`}
-    </h3>
   </div>
-</Terminal>
+
+  <h3 class="font-code text-sm text-subtext-1">
+    {`// ${t("commons.andManyMore")}...`}
+  </h3>
+</div>

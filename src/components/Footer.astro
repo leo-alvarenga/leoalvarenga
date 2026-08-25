@@ -9,34 +9,28 @@ const text = t("footer.text");
 const words = text.split(" ");
 ---
 
-<section
-  class="mt-12 w-full flex items-center justify-center p-4 bg-bg3"
-  id="footer"
->
-  <span
-    class={`
-      flex gap-1 md:w-[80%] lg:w-[60%]
-      justify-center flex-wrap
-      items-center text-center
-      text-subtext-1 text-sm
-    `}
-  >
-    {
-      words.map((word) => {
-        const cleanWord = word.replaceAll(",", "");
+<section class="mt-24 w-full border-t-2 border-bg2 p-4" id="footer">
+  <div class="mx-auto flex w-full max-w-screen-xl flex-col gap-4">
+    <span class="font-display text-sm font-medium leading-snug text-text flex gap-2 flex-wrap items-center justify-center">
+      {
+        words.map((word) => {
+          const cleanWord = word.replaceAll(",", "");
 
-        const match = FOOTER_LINKS.find((w) => t(w.word) === cleanWord);
-        if (!match) return <span>{word}</span>;
+          const match = FOOTER_LINKS.find((w) => t(w.word) === cleanWord);
+          if (!match) return <span>{word}</span>;
 
-        return (
-          <a href={match.href} style={`color: ${match.color};`}>
-            <span class="inline-flex gap-1 items-center">
+          return (
+            <a
+              class="inline-flex items-baseline gap-1 transition-opacity duration-250 hover:opacity-70"
+              href={match.href}
+              style={`color: ${match.color};`}
+            >
               <span>{match.word}</span>
               <i class={match.icon} />
-            </span>
-          </a>
-        );
-      })
-    }
-  </span>
+            </a>
+          );
+        })
+      }
+    </span>
+  </div>
 </section>

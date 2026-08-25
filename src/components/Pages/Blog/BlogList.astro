@@ -17,28 +17,28 @@ const hrefFor = (slug: string) =>
   language === Language.portugues ? `/pt-br/blog/${slug}` : `/blog/${slug}`;
 ---
 
-<Section wide className="flex flex-col gap-8 pt-4">
+<Section wide className="flex flex-col gap-10 pt-8">
   <BlogHeader count={posts.length} topics={topics} />
 
   {
     featured && (
       <a
         href={hrefFor(postSlug(featured.id))}
-        class="group flex flex-col overflow-hidden rounded-lg border border-bg2 bg-bg3 hover:bg-bg2 transition-colors duration-250"
+        class="group flex flex-col overflow-hidden rounded-none border border-bg2 transition-colors duration-250 hover:border-accent1 md:flex-row"
       >
         <img
           loading="eager"
           alt={featured.data.title}
-          class="w-full h-64 md:h-80 object-cover"
           src={blogCover(featured, postSlug(featured.id))}
+          class="h-64 w-full object-cover md:w-1/2"
         />
 
-        <div class="flex flex-col gap-2 p-6">
-          <span class="text-sm text-subtext-1">
+        <div class="flex flex-col gap-3 p-6">
+          <span class="font-code text-sm text-subtext-1">
             {formatDate({ start: featured.data.date.toISOString() })}
           </span>
 
-          <h2 class="text-2xl md:text-3xl font-bold text-text group-hover:text-accent transition-colors">
+          <h2 class="font-display text-2xl font-bold text-text transition-colors duration-250 group-hover:text-accent1 md:text-3xl">
             {featured.data.title}
           </h2>
 
@@ -46,7 +46,7 @@ const hrefFor = (slug: string) =>
 
           <div class="flex flex-wrap gap-2">
             {featured.data.tags.map((tag) => (
-              <span class="px-2 py-1 text-xs rounded-full bg-bg2 text-accent">{tag}</span>
+              <span class="rounded-none border border-bg2 px-2 py-1 font-code text-xs text-subtext-1">{tag}</span>
             ))}
           </div>
         </div>
@@ -54,37 +54,39 @@ const hrefFor = (slug: string) =>
     )
   }
 
-  <div class="columns-1 md:columns-2 xl:columns-3 gap-6">
-    {rest.map((post) => (
-      <a
-        href={hrefFor(postSlug(post.id))}
-        class="mb-6 break-inside-avoid group flex flex-col overflow-hidden rounded-lg border border-bg2 bg-bg3 hover:bg-bg2 transition-colors duration-250"
-      >
-        <img
-          src={blogCover(post, postSlug(post.id))}
-          alt={post.data.title}
-          loading="lazy"
-          class="w-full h-auto"
-        />
+  <div class="columns-1 gap-6 md:columns-2 xl:columns-3">
+    {
+      rest.map((post) => (
+        <a
+          href={hrefFor(postSlug(post.id))}
+          class="mb-6 break-inside-avoid group flex flex-col overflow-hidden rounded-none border border-bg2 transition-colors duration-250 hover:border-accent1"
+        >
+          <img
+            src={blogCover(post, postSlug(post.id))}
+            alt={post.data.title}
+            loading="lazy"
+            class="w-full h-auto"
+          />
 
-        <div class="flex flex-col gap-2 p-5">
-          <span class="text-sm text-subtext-1">
-            {formatDate({ start: post.data.date.toISOString() })}
-          </span>
+          <div class="flex flex-col gap-2 p-5">
+            <span class="font-code text-sm text-subtext-1">
+              {formatDate({ start: post.data.date.toISOString() })}
+            </span>
 
-          <h2 class="text-xl font-bold text-text group-hover:text-accent transition-colors">
-            {post.data.title}
-          </h2>
+            <h2 class="font-display text-xl font-bold text-text transition-colors duration-250 group-hover:text-accent1">
+              {post.data.title}
+            </h2>
 
-          <p class="text-sm text-subtext-1">{post.data.description}</p>
+            <p class="text-sm text-subtext-1">{post.data.description}</p>
 
-          <div class="flex flex-wrap gap-2">
-            {post.data.tags.map((tag) => (
-              <span class="px-2 py-1 text-xs rounded-full bg-bg2 text-accent">{tag}</span>
-            ))}
+            <div class="flex flex-wrap gap-2">
+              {post.data.tags.map((tag) => (
+                <span class="rounded-none border border-bg2 px-2 py-1 font-code text-xs text-subtext-1">{tag}</span>
+              ))}
+            </div>
           </div>
-        </div>
-      </a>
-    ))}
+        </a>
+      ))
+    }
   </div>
 </Section>

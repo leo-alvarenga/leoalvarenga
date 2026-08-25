@@ -86,22 +86,10 @@ export const NAVBAR_LINKS = [
 ];
 
 export const HERO_HIGHLIGHTED_WORDS = [
-  {
-    style: "text-accent1 font-audiowide",
-    word: "hero.word.complex",
-  },
-  {
-    style: "text-accent4",
-    word: "hero.word.data-heavy",
-  },
-  {
-    style: "text-success font-anonymous",
-    word: "hero.word.terminal",
-  },
-  {
-    style: "text-accent3 font-strong font-petit-formal",
-    word: "hero.word.cloud",
-  },
+  { word: "hero.word.complex" },
+  { word: "hero.word.data-heavy" },
+  { word: "hero.word.terminal" },
+  { word: "hero.word.cloud" },
 ];
 
 export const FOOTER_LINKS = [

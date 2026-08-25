@@ -1,6 +1,5 @@
 ---
 import { Icon } from "astro-icon/components";
-import { Image } from "astro:assets";
 
 import { getAltUrl, getLangFromUrl, useTranslation } from "../../config";
 import BasicLayout from "../../layouts/BasicLayout.astro";
@@ -29,59 +28,46 @@ const { url } = Astro;
 const [language] = getLangFromUrl(url);
 const { t } = useTranslation({ language });
 
-const images = STATUS_IMAGES[kind];
+const codeMap: Record<keyof typeof STATUS_IMAGES, string> = {
+  NOT_FOUND: "~/404",
+  ERROR: "~/error",
+  IN_PROGRESS: "~/wip",
+};
+
+const code = codeMap[kind];
 
 const redirectTo = getAltUrl(url, language, redirectHref);
 ---
 
 <BasicLayout
-  className="gap-8 md:p-0 md:w-[90%] lg:w-[60%]"
+  className="md:w-[90%] lg:w-[60%]"
   pageTitle={t(pageTitle || "")}
   preventRefBehavior
 >
-  <div class="flex flex-col items-center gap-8 mt-12 mb-16 md:my-0">
-    <hgroup class="flex flex-col items-center gap-4 text-center">
-      <h1 class="text-2xl md:text-4xl font-bold">{t(title)}</h1>
+  <div class="flex flex-col items-center gap-8 py-12 text-center md:py-24">
+    <hgroup class="flex flex-col items-center gap-4">
+      <span class="font-code text-sm tracking-[0.2em] text-accent1">{code}</span>
 
-      <h4 class="text-lg md:text-xl">
+      <h1 class="font-display text-4xl font-bold tracking-tight text-text md:text-6xl">
+        {t(title)}
+      </h1>
+
+      <p class="max-w-prose text-lg leading-relaxed text-subtext-1 md:text-xl">
         {t(description)}
-      </h4>
+      </p>
     </hgroup>
+
+    <Icon class="text-3xl text-accent1" name="fa6-solid:question" />
+    <Action className="grow-0">
+      <a
+        class="inline-flex items-center gap-3 px-5 py-2.5"
+        href={redirectTo}
+      >
+        <Icon name="fa6-solid:arrow-left" />
+        <span>{t(redirect)}</span>
+      </a>
+    </Action>
   </div>
-
-  {
-    images.map((image) => (
-      <Image
-        alt="Not found"
-        class="md:h-72 hidden"
-        data-isimage="true"
-        loading="eager"
-        src={image}
-      />
-    ))
-  }
-
-  <Action className={`
-    px-4 py-2 group grow-0 rounded-lg
-    duration:500 transition-all
-    hover:bg-accent1 hover:text-bg3
-  `}
->
-    <a class="flex items-center gap-4" href={redirectTo}>
-      <Icon name="fa6-solid:arrow-left" />
-      <span class="group-hover:underline">{t(redirect)}</span>
-
-      <Icon
-        class={`
-          -rotate-180 animate-blink
-          max-w-0 overflow-hidden
-          group-hover:max-w-8
-          duration-250 transition-all
-        `}
-        name="fa6-solid:shuttle-space"
-      />
-    </a>
-  </Action>
 </BasicLayout>
 
 <script is:inline>

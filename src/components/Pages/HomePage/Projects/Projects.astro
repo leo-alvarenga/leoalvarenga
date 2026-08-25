@@ -8,38 +8,29 @@ import Action from "../../../Action.astro";
 import Section from "../../../Section.astro";
 import { getLangFromUrl, useTranslation } from "../../../../config";
 
-
 const { url } = Astro;
 const [language] = getLangFromUrl(url);
 const { t } = useTranslation({ language });
 ---
 
-<Section className="flex flex-col gap-4 pt-12" id="projects">
-  <SectionTitle title="home.projects.title" />
+<Section className="flex flex-col gap-8 pt-24 md:pt-32" id="projects">
+  <SectionTitle index="03" title="home.projects.title" />
 
-  <div
-    class={`
-      flex flex-col gap-8
-      items-center px-0 md:px-8 py-4 w-full
-    `}
-  >
+  <div class="grid w-full grid-cols-1 gap-6 py-4 md:grid-cols-2">
     {PROJECTS.map((project) => <ProjectCard project={project} />)}
+  </div>
 
-    
-  <Action className={`
-      px-4 py-2 group grow-0 rounded-lg
-      duration:500 transition-all
-      hover:bg-accent1 hover:text-bg3
-    `}
-  >
-    <a class="flex items-center gap-4" href="https://github.com/leo-alvarenga?tab=repositories" target="_blank">
-      <span>
+  <div class="flex w-full">
+    <Action className="grow-0">
+      <a
+        class="inline-flex items-center gap-4 px-6 py-3 text-base"
+        href="https://github.com/leo-alvarenga?tab=repositories"
+        target="_blank"
+      >
         <i class="devicon-github-original text-lg"></i>
-      </span>
-
-      <span class="group-hover:underline">{t("commons.gh.seeMore")}</span>
-      <Icon name="fa6-solid:arrow-up-right-from-square" />
-    </a>
-  </Action>
+        <span>{t("commons.gh.seeMore")}</span>
+        <Icon name="fa6-solid:arrow-up-right-from-square" />
+      </a>
+    </Action>
   </div>
 </Section>

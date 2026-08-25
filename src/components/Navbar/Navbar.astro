@@ -10,11 +10,8 @@ import Brand from "./Brand.astro";
 import { Icon } from "astro-icon/components";
 
 const { url } = Astro;
-
 const [language, path] = getLangFromUrl(url);
 const { t } = useTranslation({ language });
-
-const commonClasses = "flex items-center";
 
 const getMenuItemClass = (baseHref: string) => {
   const actualPath = (
@@ -23,45 +20,21 @@ const getMenuItemClass = (baseHref: string) => {
 
   const active = actualPath === path;
 
-  let classList = `
-    flex flex-row items-center
-    justify-center px-2 relative
-    transition-all duration-250
-    group-hover:opacity-60
-  `;
-
-  if (!active) {
-    return `${classList} opacity-60 hover:opacity-100`;
-  }
-
-  return `${classList} hover:opacity-100`;
+  return "transition-colors duration-250 " + (active
+    ? "text-accent1 hover:text-text underline"
+    : "text-text hover:text-accent1")
 };
 ---
 
-<nav
-  class={`w-full p-2 ${commonClasses} gap-4 justify-center relative`}
->
-  <div
-    class={`
-    ${commonClasses}
-    w-full md:w-[70vw] relative
-    gap-2 p-2 text-lg z-50
-    transition-all duration-250
-  `}
-  >
+<nav class="w-full border-b border-bg2 p-2 relative">
+  <div class="mx-auto flex w-full max-w-screen-xl items-center gap-4 px-2">
     <Brand />
 
-    <span
-      class={`
-        ${commonClasses} group w-full
-        justify-center md:justify-end md:ml-auto
-        absolute left-0 md:static hidden
-      `}
-    >
+    <span class="ml-auto flex items-center gap-5">
       {
         NAVBAR_LINKS.map(({ label, baseHref }) => (
           <a
-            class={getMenuItemClass(baseHref)}
+            class={`font-display text-sm ${getMenuItemClass(baseHref)}`}
             href={getAltUrl(url, language, baseHref)}
           >
             {t(label)}
@@ -69,55 +42,55 @@ const getMenuItemClass = (baseHref: string) => {
         ))
       }
     </span>
-  </div>
 
-  <div class="ml-auto md:ml-0 flex items-center gap-2">
-    <button
-      type="button"
-      id="theme-toggle"
-      title="Change theme"
-      aria-label="Change theme"
-      class="flex items-center gap-2 px-3 py-2 rounded-lg bg-bg3 text-accent hover:opacity-70 transition-all duration-250 cursor-pointer"
-    >
-      <Icon name="fa6-solid:palette" />
-      <span id="theme-label" class="text-sm hidden sm:inline">Catppuccin Mocha</span>
-    </button>
-
-    <div class="relative">
+    <div class="flex items-center gap-2">
       <button
         type="button"
-        id="lang-toggle"
-        aria-expanded="false"
-        aria-haspopup="listbox"
-        aria-controls="lang-dropdown"
-        title={LANGUAGE_HINTS[language]}
-        class="flex items-center gap-2 px-3 py-2 rounded-lg bg-bg3 text-accent hover:opacity-70 transition-all duration-250 cursor-pointer"
+        id="theme-toggle"
+        title="Change theme"
+        aria-label="Change theme"
+        class="flex items-center gap-2 rounded-none border border-bg2 px-3 py-2 text-subtext-1 transition-colors duration-250 cursor-pointer hover:border-accent1 hover:text-accent1"
       >
-        <Icon name="fa6-solid:globe" />
-        <span class="text-sm hidden sm:inline">{LANGUAGE_LABELS[language]}</span>
-        <span class="text-sm sm:hidden">{language === DEFAULT_LANG ? "EN" : "PT"}</span>
-        <Icon name="fa6-solid:chevron-down" />
+        <Icon name="fa6-solid:palette" />
+        <span id="theme-label" class="text-sm hidden sm:inline">Catppuccin Mocha</span>
       </button>
 
-      <ul
-        id="lang-dropdown"
-        role="listbox"
-        class="absolute right-0 mt-2 min-w-[10rem] hidden flex-col gap-1 p-2 rounded-lg bg-bg3 border border-bg2 shadow-lg z-50"
-      >
-        {
-          Object.entries(LANGUAGE_LABELS).map(([lang, label]) => (
-            <li role="option" aria-selected={lang === language}>
-              <button
-                type="button"
-                data-lang={lang}
-                class={`w-full text-left px-2 py-1 rounded-md hover:opacity-70  cursor-pointer ${lang === language ? "underline" : ""}`}
-              >
-                {label}
-              </button>
-            </li>
-          ))
-        }
-      </ul>
+      <div class="relative">
+        <button
+          type="button"
+          id="lang-toggle"
+          aria-expanded="false"
+          aria-haspopup="listbox"
+          aria-controls="lang-dropdown"
+          title={LANGUAGE_HINTS[language]}
+          class="flex items-center gap-2 rounded-none border border-bg2 px-3 py-2 text-subtext-1 transition-colors duration-250 cursor-pointer hover:border-accent1 hover:text-accent1"
+        >
+          <Icon name="fa6-solid:globe" />
+          <span class="text-sm hidden sm:inline">{LANGUAGE_LABELS[language]}</span>
+          <span class="text-sm sm:hidden">{language === DEFAULT_LANG ? "EN" : "PT"}</span>
+          <Icon name="fa6-solid:chevron-down" />
+        </button>
+
+        <ul
+          id="lang-dropdown"
+          role="listbox"
+          class="absolute right-0 mt-2 min-w-[10rem] hidden flex-col gap-1 rounded-none border border-bg2 bg-bg1 p-2 shadow-xl z-50"
+        >
+          {
+            Object.entries(LANGUAGE_LABELS).map(([lang, label]) => (
+              <li role="option" aria-selected={lang === language}>
+                <button
+                  type="button"
+                  data-lang={lang}
+                  class={`w-full text-left px-2 py-1 cursor-pointer transition-colors duration-250 ${lang === language ? "text-accent1" : "text-subtext-1 hover:text-text"}`}
+                >
+                  {label}
+                </button>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
     </div>
   </div>
 </nav>

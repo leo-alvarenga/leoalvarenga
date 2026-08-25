@@ -42,8 +42,8 @@ const longDescription = descriptionText.length > 120;
     class={`
       flex flex-col w-full
       gap-6 items-start
-      bg-bg3 p-4
-      rounded-lg
+      border border-bg2 p-5
+      rounded-none
     `}
   >
     <hgroup class="flex flex-col gap-2 w-full items-start">
@@ -64,7 +64,7 @@ const longDescription = descriptionText.length > 120;
           {name && <span>@{translatableTextToString(name, language)}</span>}
         </h4>
 
-        <span class="italic">
+        <span class="font-code text-sm text-subtext-1">
           {formatDate(xp, language, "commons.present")}
         </span>
       </div>

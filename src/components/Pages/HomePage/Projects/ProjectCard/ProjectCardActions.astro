@@ -2,64 +2,45 @@
 import { Icon } from "astro-icon/components";
 import Action from "../../../../Action.astro";
 
-import {
-  getAltUrl,
-  getLangFromUrl,
-  useTranslation,
-} from "../../../../../config";
+import { getAltUrl, getLangFromUrl, useTranslation } from "../../../../../config";
 
 interface Props {
   preview?: string;
   repo?: string;
 }
 
-const { props, url } = Astro;
+const { url } = Astro;
 const [language] = getLangFromUrl(url);
 const { t } = useTranslation({ language });
 
-const { preview, repo } = props;
-
-const getProjectActionClass = (disabled = false) => {
-  const base = "grow-0 px-4 py-2";
-
-  if (disabled) {
-    return base.concat(" opacity-40 pointer-events-none cursor-not-allowed");
-  }
-
-  return base.concat(" bg-bg2! hover:bg-accent!");
-};
+const { preview, repo } = Astro.props;
 
 const getSafeHref = (href = "/disabled") => {
   if (!href.startsWith("/")) return href;
-
   return getAltUrl(url, language, href) || "/";
 };
 ---
 
 <div class="flex gap-4 items-center">
-  <Action className={getProjectActionClass(!repo?.length)}>
+  <Action className={`grow-0 ${!repo?.length ? "pointer-events-none opacity-40" : ""}`}>
     <a
-      class="inline-default"
+      class="inline-flex items-center gap-2 px-4 py-2 text-sm"
       href={getSafeHref(repo)}
       target="_blank"
     >
-      <span class="group-hover:underline">{t("commons.repository")}</span>
-      <span>
-        <i class="devicon-github-original text-lg"></i>
-      </span>
+      <span>{t("commons.repository")}</span>
+      <i class="devicon-github-original text-lg"></i>
     </a>
   </Action>
 
-  <Action className={getProjectActionClass(!preview?.length)}>
+  <Action className={`grow-0 ${!preview?.length ? "pointer-events-none opacity-40" : ""}`}>
     <a
-      class="inline-default"
+      class="inline-flex items-center gap-2 px-4 py-2 text-sm"
       href={getSafeHref(preview)}
       target="_blank"
     >
-      <span class="group-hover:underline">{t("commons.preview")}</span>
-      <span>
-        <Icon name="fa6-solid:arrow-up-right-from-square" />
-      </span>
+      <span>{t("commons.preview")}</span>
+      <Icon name="fa6-solid:arrow-up-right-from-square" />
     </a>
   </Action>
 </div>

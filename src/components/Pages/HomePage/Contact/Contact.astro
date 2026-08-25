@@ -13,75 +13,59 @@ const { t } = useTranslation({ language });
 ---
 
 <Section
-  className="w-full md:w-[60%] flex flex-col gap-4 items-center pt-24 overflow-hidden"
+  className="flex flex-col gap-6 items-center pt-24 md:pt-32 overflow-hidden"
   id="contact"
 >
-  <h1 class="font-bold text-4xl">{t("home.contact.title")}</h1>
+  <h2 class="font-display text-3xl font-bold tracking-tight text-text md:text-4xl">
+    {t("home.contact.title")}
+  </h2>
 
   <div class="rounded-full border-2 border-dashed border-success p-1 relative">
-    <div class="overflow-hidden rounded-full w-52 h-52">
+    <div class="overflow-hidden rounded-full w-44 h-44">
       <img
         src="/pfp_sqr.jpeg"
-        alt="Not found"
+        alt="Leonardo Alvarenga"
         loading="eager"
         data-isimage="true"
       />
     </div>
 
-    <span class="overflow-hidden w-8 h-8 rounded-full bg-success text-bg1 text-2xl flex justify-center items-center p-1 absolute bottom-3 right-3">
+    <span
+      class="w-8 h-8 rounded-full bg-success text-bg1 text-2xl flex justify-center items-center p-1 absolute bottom-3 right-3"
+    >
     </span>
   </div>
 
   {
     IS_AVAILABLE && (
-      <span
-        class={`
-          inline-flex items-center
-          gap-2 px-2 py-1 border
-          border-success rounded-full
-          text-sm font-bold
-        `}
-      >
-        <Icon
-          class="text-success animate-blink text-xs"
-          name="fa6-solid:circle"
-        />
-
+      <span class="inline-flex items-center gap-2 rounded-none border border-success px-3 py-1 font-code text-sm text-success">
+        <Icon class="animate-blink text-xs" name="fa6-solid:circle" />
         <span>{t("home.contact.status")}</span>
       </span>
     )
   }
 
-  <div class="flex flex-col items-center gap-4 w-full p-4 mt-12">
+  <div class="flex flex-col items-center gap-4 w-full mt-8">
     <div class="flex items-center gap-4 w-full flex-wrap">
       <CopyButton
-        class={`
-            px-4 py-2 rounded-lg
-            border border-success
-            bg-bg3 flex gap-4
-            items-center duration-250
-            transition-all group grow
-            cursor-pointer text-xl
-            justify-center text-center
-            overflow-hidden
-          `}
+        class={`rounded-none border border-bg2 px-4 py-3 flex gap-4 items-center duration-250 transition-colors group grow cursor-pointer justify-center text-center overflow-hidden hover:border-accent1`}
         text={EMAIL_FOR_CONTACT}
         title={t("home.contact.email.tip")}
         success={t("home.contact.email.success")}
       >
         <span
           data-copy-label
-          class="text-subtext-0 group-hover:text-success overflow-ellipsis whitespace-nowrap overflow-hidden"
+          class="text-subtext-1 group-hover:text-accent1 overflow-ellipsis whitespace-nowrap overflow-hidden"
         >
           {EMAIL_FOR_CONTACT}
         </span>
 
-        <Icon class="group-hover:text-success" name="fa6-solid:copy" />
+        <Icon class="group-hover:text-accent1" name="fa6-solid:copy" />
       </CopyButton>
 
-      <Action className="text-xl">
+      <Action variant="primary" className="grow">
         <a
-          class="px-4 py-2 w-full h-full group-hover:underline"
+          class="px-4 py-3 w-full h-full text-center"
           href={`mailto:${EMAIL_FOR_CONTACT}`}
         >
           {t("home.contact.email.action")}
@@ -92,14 +76,13 @@ const { t } = useTranslation({ language });
     <div class="flex items-center gap-4 w-full flex-wrap-reverse">
       {
         CONTACTS.map(({ download, href, icon, isDevIcon, label }) => (
-          <Action className="grow text-xl !p-0">
+          <Action className="grow">
             <a
-              class="px-4 py-2 w-full h-full inline-flex gap-4 items-center justify-center"
+              class="px-4 py-3 w-full h-full inline-flex gap-4 items-center justify-center"
               download={download}
               href={href.replace("{{language}}", language)}
             >
-              <span class="group-hover:underline">{t(label)}</span>
-
+              <span>{t(label)}</span>
               {isDevIcon ? <i class={icon} /> : <Icon name={icon} />}
             </a>
           </Action>

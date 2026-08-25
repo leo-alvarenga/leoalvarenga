@@ -11,36 +11,28 @@ const { t } = useTranslation({ language });
 
 const { title } = Astro.props;
 const words = t(title).split(" ");
-
-const getStyle = (word: string) => {
-  return HERO_HIGHLIGHTED_WORDS.find((w) => t(w.word) === word)?.style;
-};
 ---
 
 <h1
-  class={`
-    mb-4 text-4xl font-bold
-    tracking-tight leading-12
-    md:text-4xl lg:text-5xl
-    flex flex-wrap gap-3
-    items-center justify-center text-center
-  `}
+  class="font-display font-bold leading-[1.05] tracking-tight text-text text-[clamp(2.25rem,5vw,4.5rem)]"
 >
   {
     words.map((word) => {
       const cleanWord = word.replaceAll(",", "");
 
       const match = HERO_HIGHLIGHTED_WORDS.find((w) => t(w.word) === cleanWord);
-      if (!match) return <span>{word}</span>;
+      if (!match) return <span>{word}{" "}</span>;
 
       return (
-        <span class="inline-flex gap-0">
-          <span class={`duration-250 transition-all ${getStyle(cleanWord)}`}>
+        <>
+          <span class="text-accent1 underline decoration-accent1 decoration-[3px] underline-offset-8">
             {cleanWord}
           </span>
 
-          {word.endsWith(",") && <span>,</span>}
-        </span>
+          <span>
+            {word.endsWith(",") && <span>,</span>}
+          </span>
+        </>
       );
     })
   }
