@@ -12,16 +12,8 @@ const groups = SKILL_GROUPS.map((category) => ({
 }));
 ---
 
-<Terminal>
+<Terminal title="~/skills.txt">
   <div class="flex flex-col gap-8">
-    <h3 class="font-code text-sm inline-flex">
-      <span class="text-success">leo-alvarenga@portfolio:</span>
-      <span class="text-accent font-bold">~/</span>
-      <span class="text-text">$</span>
-      <span class="ml-2">cat</span>
-      <span class="ml-2 underline">skills.txt</span>
-    </h3>
-
     {
       groups.map(({ category, skills }) => (
         <div class="flex flex-col gap-3">

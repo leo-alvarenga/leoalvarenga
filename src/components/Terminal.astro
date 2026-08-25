@@ -5,16 +5,12 @@ interface Props {
 }
 
 const { className = "", title } = Astro.props;
-const circleClass = "block h-2 w-2 rounded-full";
 ---
 
 <div
-  class={`w-full overflow-hidden rounded-lg border border-bg2 bg-bg3 font-code shadow-lg shadow-bg3 ${className}`}
+  class={`w-full overflow-hidden rounded-lg bg-bg3 font-code shadow-lg shadow-bg3 ${className}`}
 >
-  <div class="flex items-center gap-2 bg-bg2 px-4 py-2">
-    <span class={`${circleClass} bg-error`}></span>
-    <span class={`${circleClass} bg-warning`}></span>
-    <span class={`${circleClass} bg-success`}></span>
+  <div class="flex items-center gap-2 bg-bg2 px-4 py-2 border-t border-t-accent">
     {
       title && (
         <span class="ml-2 select-none text-xs text-subtext-1">{title}</span>
