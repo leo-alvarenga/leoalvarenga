@@ -70,6 +70,9 @@
   "tbd.redirect": "Return to Mission Control",
 
   "blog.title": "Blog",
+  "blog.hero.tagline": "dev tooling, AI agents, and the craft of building software from the terminal to the cloud",
+  "blog.hero.stats.posts": "{{count}} posts",
+  "blog.hero.stats.topics": "{{count}} topics",
   "blog.back": "Back to blog",
   "blog.readIn": "Read in Português 🇧🇷",
   "blog.readTime": "{{time}} minute read"

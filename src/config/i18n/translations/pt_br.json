@@ -70,6 +70,9 @@
   "tbd.redirect": "Voltar para o Controle da Missão",
 
   "blog.title": "Blog",
+  "blog.hero.tagline": "dev tooling, agentes de IA e a arte de construir software do terminal à nuvem",
+  "blog.hero.stats.posts": "{{count}} postagens",
+  "blog.hero.stats.topics": "{{count}} tópicos",
   "blog.back": "Voltar ao blog",
   "blog.readIn": "Ler em inglês 🇺🇸",
   "blog.readTime": "{{time}} minutos de leitura"

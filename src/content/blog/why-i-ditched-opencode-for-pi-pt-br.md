@@ -45,8 +45,7 @@ Eu não precisava de alternadores de modo complexos ou orquestradores de subagen
 
 A solução não era criar modos de agente pesados; era um adendo sucinto de Regras de Engajamento para o Prompt do Sistema (colocado no arquivo ~/.pi/agent/APPEND_SYSTEM.md):
 
-Snippet de código
-
+```Markdown
 ## Regras de Engajamento
 
 Estas regras estão sempre em vigor e têm prioridade sobre qualquer instrução conflitante no nível do turno.
@@ -57,6 +56,7 @@ Estas regras estão sempre em vigor e têm prioridade sobre qualquer instrução
 4. **VERIFIQUE A INTENÇÃO** — Se a consulta for ambígua (ex: "Como o X funciona?"), trate-a como investigação em modo leitura. Se a intenção realmente não puder ser inferida e agir for algo irreversível, peça esclarecimentos antes de prosseguir.
 5. **CONFIRME AÇÕES DESTRUTIVAS** — Antes de executar comandos irreversíveis (`rm -rf`, `git reset --hard`, force-push, exclusão de dados ou sobrescrita de arquivos sem backup), declare o que será perdido e confirme, a menos que o usuário tenha solicitado explicitamente.
 6. **PREFIRA FERRAMENTAS BASEADAS EM HASH** — Se houver ferramentas baseadas em hash disponíveis (`hash_edit`, `hash_read` e similares), prefira-as ao trabalhar com arquivos para garantir que não ocorra divergência de conteúdo entre leituras ou operações.
+```
 
 Construindo seu próprio Harness "Pelo amor à arte"
 Se você é o tipo de desenvolvedor que passa os finais de semana ajustando funções do .bashrc, customizando a barra de status do Neovim ou caçando otimizações para seus dotfiles, criar e customizar seu próprio Harness de Agente de IA é um dos projetos mais satisfatórios que você pode realizar no momento.

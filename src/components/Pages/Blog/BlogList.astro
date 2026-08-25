@@ -3,22 +3,22 @@ import { getCollection } from "astro:content";
 import { getLangFromUrl, Language } from "../../../config";
 import { blogCover, formatDate, postLanguage, postSlug } from "../../../utils";
 import Section from "../../Section.astro";
-import SectionTitle from "../../SectionTitle.astro";
+import BlogHeader from "./BlogHeader.astro";
 
 const [language] = getLangFromUrl(Astro.url);
-
 const posts = (await getCollection("blog"))
   .filter((post) => postLanguage(post.id) === language)
   .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
 
 const [featured, ...rest] = posts;
+const topics = new Set(posts.flatMap((p) => p.data.tags)).size;
 
 const hrefFor = (slug: string) =>
   language === Language.portugues ? `/pt-br/blog/${slug}` : `/blog/${slug}`;
 ---
 
 <Section wide className="flex flex-col gap-8 pt-12">
-  <SectionTitle title="blog.title" />
+  <BlogHeader count={posts.length} topics={topics} />
 
   {
     featured && (
@@ -37,10 +37,13 @@ const hrefFor = (slug: string) =>
           <span class="text-sm text-subtext-1">
             {formatDate({ start: featured.data.date.toISOString() })}
           </span>
+
           <h2 class="text-2xl md:text-3xl font-bold text-text group-hover:text-accent transition-colors">
             {featured.data.title}
           </h2>
+
           <p class="text-subtext-1">{featured.data.description}</p>
+
           <div class="flex flex-wrap gap-2">
             {featured.data.tags.map((tag) => (
               <span class="px-2 py-1 text-xs rounded-full bg-bg2 text-accent">{tag}</span>
@@ -63,14 +66,18 @@ const hrefFor = (slug: string) =>
           loading="lazy"
           class="w-full h-auto"
         />
+
         <div class="flex flex-col gap-2 p-5">
           <span class="text-sm text-subtext-1">
             {formatDate({ start: post.data.date.toISOString() })}
           </span>
+
           <h2 class="text-xl font-bold text-text group-hover:text-accent transition-colors">
             {post.data.title}
           </h2>
+
           <p class="text-sm text-subtext-1">{post.data.description}</p>
+
           <div class="flex flex-wrap gap-2">
             {post.data.tags.map((tag) => (
               <span class="px-2 py-1 text-xs rounded-full bg-bg2 text-accent">{tag}</span>

@@ -1,0 +1,45 @@
+---
+import { getLangFromUrl, useTranslation } from "../../../config";
+
+interface Props {
+  count: number;
+  topics: number;
+}
+
+const { count, topics } = Astro.props;
+const [language] = getLangFromUrl(Astro.url);
+const { t } = useTranslation({ language });
+
+const circleClass = "block w-2 h-2 rounded-full";
+---
+
+<div class="w-full overflow-hidden rounded-lg border border-bg2 bg-bg3 shadow-lg shadow-bg3 font-code">
+  <div class="flex items-center gap-2 bg-bg2 px-4 py-2">
+    <span class={`${circleClass} bg-error`}></span>
+    <span class={`${circleClass} bg-warning`}></span>
+    <span class={`${circleClass} bg-success`}></span>
+    <span class="ml-2 select-none text-xs text-subtext-1">~/blog</span>
+  </div>
+
+  <div class="flex flex-col gap-2 p-6">
+    <h1 class="flex items-center gap-2 text-3xl font-bold text-text md:text-4xl mb-8">
+      <span class="text-accent">{"# "}</span>
+      {t("blog.title")}
+    </h1>
+
+    <p class="text-text">
+      <span class="text-accent">{"> "}</span>
+      {t("blog.hero.tagline")}
+    </p>
+
+    <p class="text-subtext-1 inline-flex items-center">
+      <span class="text-accent">{"> "}</span>
+
+      <span class="ml-2">
+        {`${t("blog.hero.stats.posts", { count })} · ${t("blog.hero.stats.topics", { count: topics })}`}
+      </span>
+
+      <span class="inline-block h-5 w-2 animate-blink bg-accent"></span>
+    </p>
+  </div>
+</div>
