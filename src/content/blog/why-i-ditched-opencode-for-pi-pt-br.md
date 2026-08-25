@@ -1,6 +1,7 @@
 ---
 title: "Por que abandonei o OpenCode pelo Pi"
 description: "...E como encontrei meu harness de agente ideal"
+cover: "/covers/why-i-ditched-opencode-for-pi.jpg"
 date: 2026-08-24
 tags: ["depoimento", "ia", "agentes de ia", "dev workflow", "pi", "opencode"]
 ---
