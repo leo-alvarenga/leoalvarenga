@@ -1,10 +1,10 @@
 ---
 interface Props {
   text?: string;
-  success?: string;
-  successClass?: string;
   class?: string;
   title?: string;
+  success?: string;
+  successClass?: string;
 }
 
 const { text, success = "Copied!", successClass, class: className, title } = Astro.props;
@@ -14,7 +14,7 @@ const { text, success = "Copied!", successClass, class: className, title } = Ast
   type="button"
   title={title}
   class={className}
-  data-copy={text}
+  data-copy={text ?? ""}
   data-success={success}
   data-success-class={successClass}
 >
@@ -29,15 +29,17 @@ const { text, success = "Copied!", successClass, class: className, title } = Ast
     const btn = target.closest("[data-copy]");
     if (!btn) return;
 
-    const text = btn.getAttribute("data-copy") ?? location.href;
-    const success = btn.getAttribute("data-success") ?? "Copied!";
-    const successClass = btn.getAttribute("data-success-class");
+    const text = btn.getAttribute("data-copy") || location.href;
     const label = btn.querySelector("[data-copy-label]") ?? btn;
+
     const original = label.textContent ?? "";
+    const successClass = btn.getAttribute("data-success-class");
+    const success = btn.getAttribute("data-success") ?? "Copied!";
 
     try {
       await navigator.clipboard.writeText(text);
       label.textContent = success;
+
       if (successClass) btn.classList.add(successClass);
     } catch {
       label.textContent = "Failed";
@@ -45,6 +47,7 @@ const { text, success = "Copied!", successClass, class: className, title } = Ast
 
     setTimeout(() => {
       label.textContent = original;
+
       if (successClass) btn.classList.remove(successClass);
     }, 2000);
   });
