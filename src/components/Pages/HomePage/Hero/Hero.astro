@@ -5,7 +5,7 @@ import { Icon } from "astro-icon/components";
 import { getAltUrl, getLangFromUrl, useTranslation } from "../../../../config";
 import HeroTitle from "./HeroTitle.astro";
 import Section from "../../../Section.astro";
-import Button from "../../../Button.astro";
+import Action from "../../../Action.astro";
 
 const [language] = getLangFromUrl(Astro.url);
 const { t } = useTranslation({ language });
@@ -59,7 +59,7 @@ const longestRole = roles.reduce((a, b) => (a.length >= b.length ? a : b));
 
     <span class="mt-12 flex flex-col gap-4 items-center justify-center">
       <span class="inline-flex gap-4 items-center justify-center">
-        <Button>
+        <Action>
           <button
             class={`
               w-full text-lg
@@ -69,9 +69,9 @@ const longestRole = roles.reduce((a, b) => (a.length >= b.length ? a : b));
           >
             {t("home.hero.action.contact")}
           </button>
-        </Button>
+        </Action>
 
-        <Button>
+        <Action>
           <a
             class={`
               inline-default h-full text-lg
@@ -82,10 +82,10 @@ const longestRole = roles.reduce((a, b) => (a.length >= b.length ? a : b));
             {t("home.hero.action.blog")}
             <Icon name="fa6-solid:newspaper" />
           </a>
-        </Button>
+        </Action>
       </span>
 
-      <Button className="w-full text-center">
+      <Action className="w-full text-center">
         <button
           class={`
             inline-default
@@ -98,7 +98,7 @@ const longestRole = roles.reduce((a, b) => (a.length >= b.length ? a : b));
 
           <Icon class="animate-bounce" name="fa6-solid:arrow-down" />
         </button>
-      </Button>
+      </Action>
     </span>
   </div>
 

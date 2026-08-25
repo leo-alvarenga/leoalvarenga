@@ -1,6 +1,6 @@
 ---
-title: "Why your Choice of tools matter"
-description: "My personal views on how to chose and configure the tools you (should) use"
+title: "Why Your Choice of Tools Matters"
+description: "My personal views on how to choose and configure the tools you (should) use"
 cover: "/covers/why-your-choice-of-tools-matter.jpg"
 date: 2026-08-16
 tags: ["opinion", "dev workflow"]
@@ -16,7 +16,7 @@ I view my toolchain (whether it’s Neovim, Tmux, OpenCode, or Pi) as a dynamic 
 
 I live by a simple motto:
 
-> _I’d rather spend a few hours after work or on a weekend "fleshing out" my dotfiles than deal with slow downs, down times, or frustration with my tools while I’m working._
+> _I’d rather spend a few hours after work or on a weekend "fleshing out" my dotfiles than deal with slowdowns, downtimes, or frustration with my tools while I’m working._
 
 Here is how that philosophy translates across my core stack:
 

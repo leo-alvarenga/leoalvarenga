@@ -86,14 +86,3 @@ export const PROJECTS: Project[] = [
     tags: [ProjectTag.frontend, ProjectTag.backend],
   },
 ];
-
-// TODO: Add featured projects (maybe with a slider?)
-export const FEATURED_PROJECTS = [];
-
-export const PROJECT_TAGS = [
-  ProjectTag.all,
-  ProjectTag.backend,
-  ProjectTag.command,
-  ProjectTag.frontend,
-  ProjectTag.linux,
-];

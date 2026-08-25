@@ -4,7 +4,7 @@ import { Icon } from "astro-icon/components";
 import { getLangFromUrl, useTranslation } from "../../../../config";
 import { EMAIL_FOR_CONTACT } from "../../../../utils";
 import Section from "../../../Section.astro";
-import Button from "../../../Button.astro";
+import Action from "../../../Action.astro";
 import { CONTACTS, IS_AVAILABLE } from "../../../../data";
 
 const [language] = getLangFromUrl(Astro.url);
@@ -79,20 +79,20 @@ const { t } = useTranslation({ language });
         <Icon class="group-hover:text-success" name="fa6-solid:copy" />
       </button>
 
-      <Button className="text-xl">
+      <Action className="text-xl">
         <a
           class="px-4 py-2 w-full h-full group-hover:underline"
           href={`mailto:${EMAIL_FOR_CONTACT}`}
         >
           {t("home.contact.email.action")}
         </a>
-      </Button>
+      </Action>
     </div>
 
     <div class="flex items-center gap-4 w-full flex-wrap-reverse">
       {
         CONTACTS.map(({ download, href, icon, isDevIcon, label }) => (
-          <Button className="grow text-xl !p-0">
+          <Action className="grow text-xl !p-0">
             <a
               class="px-4 py-2 w-full h-full inline-flex gap-4 items-center justify-center"
               download={download}
@@ -102,7 +102,7 @@ const { t } = useTranslation({ language });
 
               {isDevIcon ? <i class={icon} /> : <Icon name={icon} />}
             </a>
-          </Button>
+          </Action>
         ))
       }
     </div>

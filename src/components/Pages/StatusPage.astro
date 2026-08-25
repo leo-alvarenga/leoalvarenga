@@ -4,7 +4,7 @@ import { Image } from "astro:assets";
 
 import { getAltUrl, getLangFromUrl, useTranslation } from "../../config";
 import BasicLayout from "../../layouts/BasicLayout.astro";
-import Button from "../Button.astro";
+import Action from "../Action.astro";
 import { STATUS_IMAGES } from "../../utils";
 
 interface Props {
@@ -61,7 +61,7 @@ const redirectTo = getAltUrl(url, language, redirectHref);
     ))
   }
 
-  <Button className={`
+  <Action className={`
     px-4 py-2 group grow-0 rounded-lg
     duration:500 transition-all
     hover:bg-accent1 hover:text-bg3
@@ -81,7 +81,7 @@ const redirectTo = getAltUrl(url, language, redirectHref);
         name="fa6-solid:shuttle-space"
       />
     </a>
-  </Button>
+  </Action>
 </BasicLayout>
 
 <script is:inline>

@@ -1,6 +1,6 @@
 ---
 import { Icon } from "astro-icon/components";
-import Button from "../../../../Button.astro";
+import Action from "../../../../Action.astro";
 
 import {
   getAltUrl,
@@ -37,7 +37,7 @@ const getSafeHref = (href = "/disabled") => {
 ---
 
 <div class="flex gap-4 items-center">
-  <Button className={getProjectActionClass(!repo?.length)}>
+  <Action className={getProjectActionClass(!repo?.length)}>
     <a
       class="inline-default"
       href={getSafeHref(repo)}
@@ -48,9 +48,9 @@ const getSafeHref = (href = "/disabled") => {
         <i class="devicon-github-original text-lg"></i>
       </span>
     </a>
-  </Button>
+  </Action>
 
-  <Button className={getProjectActionClass(!preview?.length)}>
+  <Action className={getProjectActionClass(!preview?.length)}>
     <a
       class="inline-default"
       href={getSafeHref(preview)}
@@ -61,5 +61,5 @@ const getSafeHref = (href = "/disabled") => {
         <Icon name="fa6-solid:arrow-up-right-from-square" />
       </span>
     </a>
-  </Button>
+  </Action>
 </div>

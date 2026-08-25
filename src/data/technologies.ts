@@ -125,5 +125,3 @@ export const TECH_MAP: Record<string, Technology> = {
     label: "FastAPI",
   },
 };
-
-export const TECHNOLOGIES = Object.values(TECH_MAP);

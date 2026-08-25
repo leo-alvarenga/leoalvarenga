@@ -6,7 +6,7 @@ date: 2026-08-24
 tags: ["testimony", "ai", "ai agents", "dev workflow", "pi", "opencode"]
 ---
 
-When I first started diving beyond standard AI chat windows into local, agentic workflows, OpenCode felt like a breath of fresh air. It showed me what was possible when an LLM had direct, structured access to a local codebase. It allowed me to gradually and incrementally understand and use Skills, Agent Profiles, custom commands and agent loops. Eventualy, as my daily workflow evolved, I started noticing a subtle friction: OpenCode held my hand a little _too_ much.
+When I first started diving beyond standard AI chat windows into local, agentic workflows, OpenCode felt like a breath of fresh air. It showed me what was possible when an LLM had direct, structured access to a local codebase. It allowed me to gradually and incrementally understand and use Skills, Agent Profiles, custom commands and agent loops. Eventually, as my daily workflow evolved, I started noticing a subtle friction: OpenCode held my hand a little _too_ much.
 
 Don't get me wrong, OpenCode is a fantastic starting point. Its subagent isolation, automatic context compaction, and strict mode management are **very** well-engineered. But over time, its opinions on how subagents should be spawned and how context should be partitioned began to feel restrictive. I follow a very strict personal philosophy:
 
