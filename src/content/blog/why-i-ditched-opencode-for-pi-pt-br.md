@@ -1,69 +1,65 @@
 ---
-title: "Why I Ditched OpenCode for Pi"
-description: "...And How I Found My Ideal Agent Harness"
+title: "Por que abandonei o OpenCode pelo Pi"
+description: "...E como encontrei meu harness de agente ideal"
 date: 2026-08-24
-tags: ["testimony", "ai", "ai agents", "dev workflow", "pi", "opencode"]
+tags: ["depoimento", "ia", "agentes de ia", "dev workflow", "pi", "opencode"]
 ---
 
-When I first started diving beyond standard AI chat windows into local, agentic workflows, OpenCode felt like a breath of fresh air. It showed me what was possible when an LLM had direct, structured access to a local codebase. It allowed me to gradually and incrementally understand and use Skills, Agent Profiles, custom commands and agent loops. Eventualy, as my daily workflow evolved, I started noticing a subtle friction: OpenCode held my hand a little _too_ much.
+Quando comecei a ir além das janelas de chat padrão de IA para explorar _workflows_ locais e baseados em agentes, o OpenCode pareceu um sopro de ar fresco. Ele me mostrou o que era possível quando um LLM tinha acesso direto e estruturado a uma base de código local. Isso me permitiu entender e usar gradualmente Skills, Perfis de Agente, comandos customizados e loops de agente. Com o tempo, à medida que meu _workflow_ diário evoluía, comecei a notar uma fricção sutil: o OpenCode segurava a minha mão um pouco _demais_.
 
-Don't get me wrong, OpenCode is a fantastic starting point. Its subagent isolation, automatic context compaction, and strict mode management are **very** well-engineered. But over time, its opinions on how subagents should be spawned and how context should be partitioned began to feel restrictive. I follow a very strict personal philosophy:
+Não me leve a mal, o OpenCode é um ponto de partida fantástico. O isolamento de subagentes, a compactação automática de contexto e o gerenciamento estrito de modos são **muito** bem projetados. Mas, com o tempo, suas opiniões sobre como subagentes deveriam ser criados e como o contexto deveria ser particionado começaram a parecer restritivas. Eu sigo uma filosofia pessoal muito rígida:
 
-As such, I didn't want a rigid framework telling me how my agentic loops had to operate; I wanted a malleable canvas where I had total authority over token spending, system prompts, and tool execution.
+Por conta disso, eu não queria uma estrutura rígida me dizendo como meus loops de agentes deveriam operar; eu queria uma tela maleável onde eu tivesse autoridade total sobre o consumo de tokens, prompts do sistema e execução de ferramentas.
 
-Enter **[Pi](https://pi.dev/)**.
+Eis que surge o **[Pi](https://pi.dev/)**.
 
-## Stage 1: Trying to Re-create What I Thought I Wanted
+## Estágio 1: Tentando recriar o que eu achava que queria
 
-When I migrated to Pi, my first instinct was to recreate the familiar setup I was used to. I missed OpenCode's strict separation between planning and building, so I built my own extension: [@leo-alvarenga/pi-agent-manager](https://www.npmjs.com/package/@leo-alvarenga/pi-agent-manager).
+Quando migrei para o Pi, meu primeiro instinto foi recriar a estrutura familiar à qual eu estava acostumado. Sentia falta da separação rígida do OpenCode entre planejamento e execução, então construí minha própria extensão: [@leo-alvarenga/pi-agent-manager](https://www.npmjs.com/package/@leo-alvarenga/pi-agent-manager).
 
-The extension let me swap profile states on the fly. I even wired up Pi’s `before_agent_start` event hook to dynamically inject tagged agent instructions directly into the system prompt prior to every turn:
+A extensão me permitia alternar estados de perfil rapidamente. Cheguei até a conectar o hook de evento `before_agent_start` do Pi para injetar dinamicamente instruções de agente etiquetadas diretamente no prompt do sistema antes de cada turno:
 
 ```Markdown
 
 <!-- AGENT_PROFILE_START -->
 
-## Active Agent Profile: PLAN
+## Perfil de Agente Ativo: PLAN
 
-You are in PLAN MODE (read-only architecture & exploration).
-Do NOT make direct code edits or run state-modifying terminal commands.
+Você está no MODO PLAN (arquitetura e exploração em modo leitura).
+NÃO faça edições diretas no código nem execute comandos de terminal que modifiquem o estado.
 
 <!-- AGENT_PROFILE_END -->
 ```
 
-It was a fun exercise, and technically, it worked. I achieved near-total feature parity with OpenCode's mode-switching architecture right inside Pi.
+Foi um exercício divertido e, tecnicamente, funcionou. Alcancei uma paridade de funcionalidades quase total com a arquitetura de alternância de modos do OpenCode, diretamente dentro do Pi.
 
-...And then I realized I had built a solution for a problem I no longer had.
+...E então percebi que tinha construído uma solução para um problema que eu não tinha mais.
 
-## Stage 2: Realizing What I Actually Needed
+Estágio 2: Percebendo o que eu realmente precisava
+À medida que passei mais tempo usando o gerenciador de perfis, as falhas na filosofia de "modos de agente" ficaram evidentes.
 
-As I spent more time using the profile manager, the cracks in the "agent modes" philosophy became obvious.
+Limites rígidos entre modos forçam uma fricção artificial de múltiplos turnos. Para uma refatoração rápida de duas linhas, exigir que um agente entre em um modo de leitura, gere um plano completo, aguarde confirmação, mude para o modo de execução e releia o contexto gera um custo enorme de latência. Pior ainda, separar a exploração da execução muitas vezes fragmenta o contexto, fazendo com que detalhes sutis descobertos durante a inspeção se percam na transição.
 
-Hard mode boundaries force artificial, multi-turn friction. For a quick two-line refactor, requiring an agent to enter a read-only mode, generate a full plan, wait for confirmation, switch to a build mode, and re-read the context is a massive latency tax. Worse, separating exploration from execution often fragments context, causing subtle details discovered during inspection to get lost during handoff.
+Eu não precisava de alternadores de modo complexos ou orquestradores de subagentes. Eu só queria evitar "escritas acidentais" (aquelas interações irritantes em que o agente edita agressivamente um arquivo quando eu só tinha feito uma pergunta exploratória simples).
 
-I didn't actually need complex mode switchers or subagent orchestrators. I just wanted to stop "mistaken writes" (aka those annoying turns where an agent aggressively edits a file when I only asked a simple exploratory question).
+A solução não era criar modos de agente pesados; era um adendo sucinto de Regras de Engajamento para o Prompt do Sistema (colocado no arquivo ~/.pi/agent/APPEND_SYSTEM.md):
 
-The fix wasn't heavy agent modes; it was a terse Rules of Engagement System Prompt Addendum (placed in the `~/.pi/agent/APPEND_SYSTEM.md` file):
+Snippet de código
 
-```Markdown
+## Regras de Engajamento
 
-## Rules of Engagement
+Estas regras estão sempre em vigor e têm prioridade sobre qualquer instrução conflitante no nível do turno.
 
-These rules are always in effect and take precedence over any conflicting turn-level instruction.
+1. **TRATE MODIFICAÇÕES DE ARQUIVOS COMO DESTRUTIVAS** — Ferramentas de modificação de arquivos como `edit`, `write`, `replace` devem ser tratadas como delicadas e usadas apenas se estritamente necessário (O mesmo vale para `bash` ou outras ferramentas de execução que possam invocar comandos de shell para modificar arquivos).
+2. **LEIA ANTES DE ESCREVER** — Nunca invoque `edit`, `write` ou `replace` no seu primeiro turno, a menos que o usuário ordene explicitamente "corrija", "edite", "escreva", "crie" ou similar. Investigação em modo leitura (`read`, `grep`, `find`, `ls` e `bash` não mutável) é sempre permitida e esperada.
+3. **PROPONHA PRIMEIRO** — Para perguntas exploratórias ou de arquitetura, descreva as alterações propostas em texto antes de invocar qualquer ferramenta de edição. Aguarde a concordância do usuário antes de escrever nos arquivos.
+4. **VERIFIQUE A INTENÇÃO** — Se a consulta for ambígua (ex: "Como o X funciona?"), trate-a como investigação em modo leitura. Se a intenção realmente não puder ser inferida e agir for algo irreversível, peça esclarecimentos antes de prosseguir.
+5. **CONFIRME AÇÕES DESTRUTIVAS** — Antes de executar comandos irreversíveis (`rm -rf`, `git reset --hard`, force-push, exclusão de dados ou sobrescrita de arquivos sem backup), declare o que será perdido e confirme, a menos que o usuário tenha solicitado explicitamente.
+6. **PREFIRA FERRAMENTAS BASEADAS EM HASH** — Se houver ferramentas baseadas em hash disponíveis (`hash_edit`, `hash_read` e similares), prefira-as ao trabalhar com arquivos para garantir que não ocorra divergência de conteúdo entre leituras ou operações.
 
-1. **TREAT FILE MODIFICATIONS AS DESTRUCTIVE** — `edit`, `write`, `replace` and other file modifications tools should be treated as delicate and only used if strictly necessary (Same goes for `bash` or other execute tools that can invoke shell tools to modify files)
-2. **READ BEFORE WRITE** — Never invoke `edit`, `write`, or `replace` on your first turn unless the user explicitly commands "fix", "edit", "write", "create", or similar. Read-only investigation (`read`, `grep`, `find`, `ls`, and non-mutating `bash`) is always allowed and expected.
-3. **PROPOSE FIRST** — For exploratory or architectural questions, outline the proposed changes in text before invoking any edit tools. Wait for the user to agree before writing files.
-4. **VERIFY INTENT** — If the query is ambiguous (e.g., "How does X work?"), treat it as read-only investigation. If intent genuinely cannot be inferred and acting would be irreversible, ask for clarification before proceeding.
-5. **CONFIRM DESTRUCTIVE ACTIONS** — Before running irreversible commands (`rm -rf`, `git reset --hard`, force-push, dropping data, or overwriting files without backup), state what will be lost and confirm unless the user explicitly requested it.
-6. **PREFER HASH ANCHORED TOOLS** — If there are hash anchored tools available (`hash_edit`, `hash_read` and similar tools) prefer them when working with files to ensure no content drift happens in-between reads or operations.
+Construindo seu próprio Harness "Pelo amor à arte"
+Se você é o tipo de desenvolvedor que passa os finais de semana ajustando funções do .bashrc, customizando a barra de status do Neovim ou caçando otimizações para seus dotfiles, criar e customizar seu próprio Harness de Agente de IA é um dos projetos mais satisfatórios que você pode realizar no momento.
 
-```
+Estamos atualmente na "era dos dotfiles" da engenharia de IA. Ferramentas prontas são ótimas para começar, mas moldar seu próprio ambiente (seja construindo molduras de status TUI customizadas, escrevendo ferramentas de edição ancoradas por hash ou criando daemons de proxy localizados) oferece um nível incrível de autonomia sobre seus loops de feedback de desenvolvimento.
 
-## Building Your Own Harness "For the Love of the Game"
-
-If you're the kind of developer who spends weekends tweaking `.bashrc` functions, customizing Neovim statuslines, or hunting down dotfile optimizations, building and customizing your own AI Agent Harness is one of the most satisfying projects you can pursue right now.
-
-We are currently in the "dotfiles era" of AI engineering. Off-the-shelf tools are great for getting started, but crafting your own environment (whether that means building custom TUI status frames, writing hash-anchored edit tools, or crafting localized proxy daemons) gives you an incredible level of agency over your developer feedback loops.
-
-Is there such a thing as an "end-level, perfectly optimized productive workflow"? **Nope**. You'll always refactor a system prompt, tweak a TUI border, or test a new extension. But tinkering with your own harness isn't _just_ about productivity, it's for the love of the game.
+Existe algo como um "workflow produtivo perfeitamente otimizado e definitivo"? Não. Você sempre vai refatorar um prompt do sistema, ajustar a borda de uma TUI ou testar uma nova extensão. Mas ajustar o seu próprio harness não é apenas sobre produtividade, é pelo amor à arte.
