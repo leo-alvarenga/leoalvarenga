@@ -9,11 +9,12 @@ export enum ProjectStatus {
 }
 
 export enum ProjectTag {
-  backend = "Back-end",
   ai = "AI",
   linux = "Linux",
   command = "CLI",
+  music = "Music",
   all = "commons.all",
+  backend = "Back-end",
   frontend = "Front-end",
 }
 
@@ -73,16 +74,16 @@ export const PROJECTS: Project[] = [
   {
     description: {
       [Language.english]:
-        "A powerful, lightweight and reliable CLI based to-do tracker capable of serving a web front-end locally",
+        "CLI that transcodes FLAC files to AAC (.m4a) for DAPs; mirrors folder structure via ffmpeg, with dry-run and optional MusicBrainz auto-tagging",
       [Language.portugues]:
-        "Um app poderoso, leve e confiável baseado em linha de comando para controle de tarefas capaz de servir um front-end web localmente",
+        "CLI que converte arquivos FLAC para AAC (.m4a) para DAPs; espelha a estrutura de pastas via ffmpeg, com dry-run e auto-tag opcional via MusicBrainz",
     },
-    icon: "terminal",
-    name: "To Go",
+    icon: "music",
+    name: "audex",
     preview: "",
-    repo: "https://github.com/leo-alvarenga/to-go",
-    stack: [TECH_MAP.html, TECH_MAP.css, TECH_MAP.js, TECH_MAP.golang],
-    status: ProjectStatus.archived,
-    tags: [ProjectTag.frontend, ProjectTag.backend],
+    repo: "https://github.com/leo-alvarenga/audex",
+    stack: [TECH_MAP.ts, TECH_MAP.nodejs],
+    status: ProjectStatus.active,
+    tags: [ProjectTag.music, ProjectTag.command, ProjectTag.linux],
   },
 ];
