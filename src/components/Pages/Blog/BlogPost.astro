@@ -101,6 +101,14 @@ const actionClass = "inline-flex items-center gap-2 rounded-none border border-b
       <p class="text-lg">{post.data.description}</p>
     </header>
 
+    {post.data.tldr && (
+      <aside class="tldr-callout">
+        <span class="tldr-tag">TL;DR</span>
+
+        <p class="tldr-body" set:html={post.data.tldr} />
+      </aside>
+    )}
+
     <div class="blog-prose min-w-0">
       <Content />
     </div>
@@ -111,108 +119,185 @@ const actionClass = "inline-flex items-center gap-2 rounded-none border border-b
   .blog-prose {
     min-width: 0;
     user-select: text;
+    word-break: auto-phrase;
     overflow-wrap: break-word;
   }
+
   .blog-prose :global(img) {
-    max-width: 100%;
     height: auto;
+    max-width: 100%;
   }
+
   .blog-prose :global(table) {
     display: block;
     max-width: 100%;
     overflow-x: auto;
   }
+
   .blog-prose :global(h1),
   .blog-prose :global(h2),
   .blog-prose :global(h3) {
-    font-weight: 700;
-    margin: 1.75rem 0 0.75rem;
+    font-weight: 900;
+    margin: 2.5rem 0 0.75rem;
+
     color: var(--color-text);
   }
+
   .blog-prose :global(h1) {
+    font-size: 2.5rem;
+  }
+
+  .blog-prose :global(h2) {
     font-size: 1.75rem;
   }
-  .blog-prose :global(h2) {
-    font-size: 1.4rem;
-  }
+
   .blog-prose :global(h3) {
-    font-size: 1.15rem;
+    font-size: 1.25rem;
   }
+
   .blog-prose :global(p) {
     margin: 0.75rem 0;
     line-height: 1.7;
   }
+
   .blog-prose :global(ul),
   .blog-prose :global(ol) {
     margin: 0.75rem 0;
     padding-left: 1.5rem;
   }
+
+  .blog-prose :global(ul) {
+    list-style-type: disc;
+  }
+
+  .blog-prose :global(ol) {
+    list-style-type: decimal;
+  }
+
   .blog-prose :global(li) {
     margin: 0.25rem 0;
   }
+
+  .tldr-callout :global(a),
   .blog-prose :global(a) {
     color: var(--color-accent);
+    text-decoration: underline;
   }
+
+  .blog-prose :global(a):hover {
+    color: var(--color-bg1);
+    background-color: var(--color-accent);
+  }
+
   .blog-prose :global(code) {
-    font-family: var(--font-code);
     font-size: 0.9em;
-    background: var(--color-bg3);
     padding: 0.15em 0.4em;
-  }
-  .blog-prose :global(pre) {
     background: var(--color-bg3);
+    font-family: var(--font-code);
+  }
+
+  .blog-prose :global(pre) {
     padding: 1rem;
     overflow: auto;
-    max-height: 24rem;
     margin: 1rem 0;
+    max-height: 24rem;
+    background: var(--color-bg3);
   }
+
   .blog-prose :global(pre code) {
-    background: transparent;
     padding: 0;
+    background: transparent;
   }
+
   .blog-prose :global(strong) {
     color: var(--color-text);
   }
+
   .blog-prose :global(blockquote) {
-    border-left: 3px solid var(--color-accent);
+    margin: 1rem 0;
     padding-left: 1rem;
     color: var(--color-subtext-1);
-    margin: 1rem 0;
+    border-left: 3px solid var(--color-accent);
   }
+
   .blog-prose :global(.code-wrapper) {
     margin: 1rem 0;
     overflow: hidden;
   }
+
   .blog-prose :global(.code-wrapper pre) {
     margin: 0;
     border-radius: 0;
   }
+
   .blog-prose :global(.code-header) {
     display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0.5rem 0.75rem;
-    font-family: var(--font-code);
     font-size: 0.75rem;
-    color: var(--color-subtext-1);
+    align-items: center;
+    padding: 0.5rem 0.75rem;
     background: var(--color-bg2);
+    color: var(--color-subtext-1);
+    font-family: var(--font-code);
+    justify-content: space-between;
     border-bottom: 1px solid var(--color-bg3);
   }
+
   .blog-prose :global(.code-copy) {
-    background: transparent;
-    border: 1px solid var(--color-subtext-1);
+    font: inherit;
+    cursor: pointer;
+    font-size: 0.7rem;
     border-radius: 0.25rem;
     padding: 0.15rem 0.5rem;
-    font: inherit;
-    font-size: 0.7rem;
+    background: transparent;
     color: var(--color-subtext-1);
-    cursor: pointer;
+    border: 1px solid var(--color-subtext-1);
     transition: color 0.15s, border-color 0.15s;
   }
+
   .blog-prose :global(.code-copy:hover) {
     color: var(--color-accent);
     border-color: var(--color-accent);
   }
+
+  .tldr-callout {
+    gap: 0.5rem;
+    display: flex;
+    padding: 1rem 1.25rem;
+    flex-direction: column;
+    background: var(--color-bg2);
+    border-left: 4px solid var(--color-accent2);
+  }
+
+  .tldr-tag {
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-accent2);
+    font-family: var(--font-code);
+  }
+
+  .tldr-body {
+    margin: 0;
+    line-height: 1.6;
+    font-size: 0.95rem;
+    color: var(--color-text);
+  }
+
+  .tldr-link {
+    gap: 0.375rem;
+    font-size: 0.8rem;
+    align-items: center;
+    display: inline-flex;
+    color: var(--color-accent);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  .tldr-link:hover {
+    color: var(--color-accent2);
+  }
+
 </style>
 
 <script>
@@ -221,7 +306,7 @@ const actionClass = "inline-flex items-center gap-2 rounded-none border border-b
       if (pre.parentElement?.classList.contains("code-wrapper")) return;
 
       const label = document.createElement("span");
-      label.textContent = pre.dataset.title || pre.dataset.language || "";
+      label.textContent = pre?.dataset?.title || pre?.dataset?.language || "";
 
       const button = document.createElement("button");
       button.type = "button";
